@@ -1,0 +1,83 @@
+#home {
+	height: 300px;
+}
+
+#knowledge{
+	height: 300px;
+}
+
+#art{
+	height: 300px;
+}
+
+#about-us{
+	height: 300px;
+}
+
+#contact-us{
+	height: 300px;
+}
+
+#jumbo-home{
+	color: white;
+	margin-top: -50px;
+	height: 500px;
+background: url(http://img.wallpaperstock.net:81/blue-lights-wallpapers_2634_1920x1200.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#jumbo-knowledge{
+	color: white;
+	height: 500px;
+background: url(http://bookcaseporn.com/wp-content/uploads/2009/07/shelf3.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#jumbo-art{
+	color: white;
+	height: 500px;
+background: url(http://www.freemalaysiatoday.com/wp-content/uploads/2012/04/Asian+Beach+Games+Day+5+Beach+Pencak+Silat+Ca496HOzTEAl.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#jumbo-about{
+	color: white;
+	height: 500px;
+background: url(http://img.wallpaperstock.net:81/blue-lights-wallpapers_2634_1920x1200.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#jumbo-contact{
+	color: white;
+	height: 500px;
+background: url(http://img.wallpaperstock.net:81/blue-lights-wallpapers_2634_1920x1200.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+#googleMap{
+	width:inherit;
+	height:380px;
+	margin-bottom: 20px;
+}
+
+
+@media screen and (max-width: 400px) {
+    .footer-banner{
+	margin: 0 0 0 0 ;
+	}
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>SLKPKH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="css/flat-ui.min.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet">
+	<script src="http://maps.googleapis.com/maps/api/js"></script>
+	<script>
+	var myCenter=new google.maps.LatLng(3.196642, 101.668834);
+	var marker;
+
+	function initialize()
+	{
+	var mapProp = {
+	  center:myCenter,
+	  zoom:17,
+	  mapTypeId:google.maps.MapTypeId.ROADMAP
+	  };
+
+	var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+
+	var marker=new google.maps.Marker({
+	  position:myCenter,
+	  animation:google.maps.Animation.BOUNCE
+	  });
+
+	marker.setMap(map);
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+	</script>
+    <!-- <link rel="shortcut icon" href="img/favicon.ico"> -->
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+    <!--[if lt IE 9]>
+      <script src="js/vendor/html5shiv.js"></script>
+      <script src="js/vendor/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+<!-- navbar -->
+      <div class="row">
+        <div class="col-xs-12">
+          <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                <span class="sr-only">Toggle navigation</span>
+              </button>
+              <a class="navbar-brand" href="#">SLKPKH</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar-collapse-01">
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#jumbo-home">HOME</a></li>
+              </ul>
+               
+            </div><!-- /.navbar-collapse -->
+          </nav><!-- /navbar -->
+        </div>
+      </div> <!-- /row -->
+<!-- end navbar -->
+<div class="jumbotron" id="jumbo-home">
+  <div class="container">
+   <h1>Hello, world!</h1>
+  <p>This is demo website for SLKPKH</p>
+  <p><a class="btn btn-primary btn-lg" href="panel/admin" role="button">Administrator Panel</a></p>
+  <p><a class="btn btn-primary btn-lg" href="panel/kb" role="button">Ketua Batalion Panel</a></p>
+  <p><a class="btn btn-primary btn-lg" href="panel/pensyarah" role="button">Pensyarah Panel</a></p>
+  </div>
+</div>
+
+<footer>
+      <div class="container">
+        
+        <div class="row">
+          <div class="col-md-5">
+            <h3 class="footer-title">Subscribe</h3>
+            <p>Go to my website for enquiry <a href="http://www.kodegeek.net">KODEGEEK</a><br/>
+              
+            </p>
+
+
+
+            
+          </div> <!-- /col-xs-7 -->
+
+          <div class="col-md-7">
+            <div class="footer-banner">
+              <h3 class="footer-title">Contact us</h3>
+              <ul>
+                <li>alifjamaluddin92[at]gmail[dot]com</li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+ </footer>
+
+
+    <!-- /.container -->
+
+    <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
+    <script src="js/vendor/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/vendor/video.js"></script>
+    <script src="js/flat-ui.min.js"></script>
+
+  </body>
+</html>
