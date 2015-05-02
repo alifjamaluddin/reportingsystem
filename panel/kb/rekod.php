@@ -45,7 +45,57 @@
         </div>
       </div> <!-- /row -->
 <!-- end navbar -->
+ <div class="container">
+    <div class="row">
+      <h3>Semak Laporan</h3>
+    </div>
+    <div class="row">
+      <div class="panel panel-info">
+      <!-- Default panel contents -->
+      <div class="panel-heading">Senarai Semakan Laporan</div>
+      <div class="panel-body">
+      <div class="input-group">
+              <input type="text" name="nomatrik" class="form-control" placeholder="Carian">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">Cari</button>
+              </span>
+            </div><!-- /input-group -->
+        <!-- <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
+      </div>
 
+      <!-- Table -->
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>ID Laporan</th>
+            <th>Nombor tentera</th>
+            <th>Nama</th>
+            <th>Kesalahan</th>
+            <th>Status</th>
+            <th>Hukuman</th>
+            <th>Catatan</th>
+
+          </tr>
+        </thead>
+        <tbody>
+           <tr>
+            <th scope="row">1</th>
+             <th>ALK0141</th>
+            <th>375296</th>
+            <th>Nur Siti Binti Ali</th>
+            <th>Tidak hadir</th>
+            <th>Dilaksanakan</th>
+            <th>Kawad tambahan</th>
+            <th>Segera!!</th>
+            
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+    </div>
+  </div>
  <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
     <script src="../../js/vendor/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

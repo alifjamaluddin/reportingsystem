@@ -25,7 +25,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
               <ul class="nav navbar-nav navbar-left">
                 <li><a href="lapor.php">LAPOR KESALAHAN</a></li>
-                <li><a href="#LINK-TO-REKOD-KESALAHAN">REKOD KESALAHAN</a></li>
+                <li><a href="#LINK-TO-REKOD-KESALAHAN">REKOD LAPORAN</a></li>
               </ul>
                <ul class="nav navbar-nav navbar-right">
                  <li class="dropdown">

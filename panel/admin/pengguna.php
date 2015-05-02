@@ -48,6 +48,37 @@
         </div>
       </div> <!-- /row -->
 <!-- end navbar -->
+      <div class="container">
+        <div class="row">
+        <h3>Daftar Pengguna</h3>
+        </div>
+        <div class="row">
+          <form>
+            <div class="col-xs-12 col-md-6">
+             
+          <div class="form-group">
+            <label for="noid">Nombor Staff / tentera:</label>
+            <input type="text" name="noid" value="" placeholder="Nombor tentera" class="form-control" />
+            <label for="level">Peranan:</label>
+            <select name="level" class="form-control" >
+                  <option value="1">Administrator</option>
+                  <option value="2">Pensyarah</option>
+                  <option value="3">Ketua Batalion</option>
+                  <option value="4">Dekan</option>
+          </select>
+            <label for="password">Katalaluan:</label>
+            <input type="password" name="password" value="" placeholder="Katalaluan" class="form-control" />
+            <label for="cpass">Sahkan katalaluan:</label>
+            <input type="password" name="cpass" value="" placeholder="Sahkan katalaluan" class="form-control" />
+            <hr>
+            <input type="submit" name="daftar" value="Daftar" class="btn btn-primary">
+
+
+          </div>
+        </div>
+          </form>
+        </div>
+      </div>
  <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
     <script src="../../js/vendor/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

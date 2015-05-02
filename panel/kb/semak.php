@@ -47,14 +47,14 @@
 <!-- end navbar -->
   <div class="container">
     <div class="row">
-      <h3>Semak Kesalahan</h3>
+      <h3>Semak Laporan</h3>
     </div>
     <div class="row">
       <div class="panel panel-info">
       <!-- Default panel contents -->
-      <div class="panel-heading">Senarai Semakan Kesalahan</div>
+      <div class="panel-heading">Senarai Semakan Laporan</div>
       <div class="panel-body">
-        <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+        <!-- <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
       </div>
 
       <!-- Table -->
@@ -67,8 +67,9 @@
             <th>Nama</th>
             <th>Kesalahan</th>
             <th>Status</th>
-            <th>Hukuman/Tindakan</th>
+            <th>Hukuman</th>
             <th>Catatan</th>
+            <th>Tindakan</th>
 
           </tr>
         </thead>
@@ -78,23 +79,15 @@
              <th>ALK0141</th>
             <th>375296</th>
             <th>Nur Siti Binti Ali</th>
-            <th>Kesalahan</th>
-            <th>Status</th>
-            <th>Hukuman/Tindakan</th>
-            <th></th>
+            <th>Tidak hadir</th>
+            <th>Diterima</th>
+            <th>Kawad tambahan</th>
+            <th>Segera!!</th>
+            <th>
+              <a href="semak_edit.php" class="btn btn-primary">Kemaskini</a>
+            </th>
           </tr>
           
-          <tr>
-            <th scope="row">2</th>
-             <th>ALK0142</th>
-            <th>375296</th>
-            <th>Nur Siti Binti Ali</th>
-            <th>Kesalahan</th>
-            <th>Status</th>
-            <th>Hukuman/Tindakan</th>
-            <th></th>
-          </tr>
-
         </tbody>
       </table>
     </div>

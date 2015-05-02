@@ -48,55 +48,39 @@
         </div>
       </div> <!-- /row -->
 <!-- end navbar -->
-  <div class="container">
-    <div class="row">
-      <h3>Pegawai Kadet</h3>
-    </div>
-    <div class="row">
-      <div class="panel panel-info">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Senarai Pegawai Kadet</div>
-      <div class="panel-body">
-          <a href="kadet_add.php" class="btn btn-primary">Tambah pegawai kadet</a>
+ <div class="container">
+        <div class="row">
+        <h3>Kemaskini Pegawai Kadet</h3>
+        </div>
+        <div class="row">
+          <form>
+            <div class="col-xs-12 col-md-6">
+             
+          <div class="form-group">
+            <label for="noid">Nombor tentera:</label>
+            <input type="text" name="noid" value="" placeholder="Nombor tentera" class="form-control" />
+            
+            <label for="nama">Nama:</label>
+            <input type="text" name="noid" value="" placeholder="Nama" class="form-control" />
+            
+            <label for="nomatrik">Nombor matrik:</label>
+            <input type="text" name="noid" value="" placeholder="Nombor matrik" class="form-control" />
+            
+           <label for="pengambilan">Pengambilan:</label>
+            <input type="text" name="noid" value="" placeholder="Pengambilan" class="form-control" />
 
-        <!-- <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
+            <label for="pa">Penasihat Akademik:</label>
+            <input type="text" name="noid" value="" placeholder="Penasihat akademik" class="form-control" />
+            
+            <hr>
+            <input type="submit" name="daftar" value="Update" class="btn btn-primary">
+
+
+          </div>
+        </div>
+          </form>
+        </div>
       </div>
-
-      <!-- Table -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombor tentera</th>
-            <th>Nama</th>
-            <th>No matrik</th>
-            <th>Pengambilan</th>
-            <th>Penasihat Akademik</th>
-            <th>Tindakan</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <th>3013522</th>
-            <th>Aziz</th>
-            <th>2120471</th>
-            <th>2011</th>
-            <th>Dr. Sayed</th>
-            <th>
-              <a href="kadet_edit.php" class="btn btn-primary">Edit</a>
-              <a href="#delete" class="btn btn-danger">Delete</a>
-
-            </th>
-          </tr>
-         
-
-
-        </tbody>
-      </table>
-    </div>
-    </div>
-  </div>
  <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
     <script src="../../js/vendor/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

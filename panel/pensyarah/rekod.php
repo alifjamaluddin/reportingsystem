@@ -24,8 +24,8 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
               <ul class="nav navbar-nav navbar-left">
-                <li><a href="lapor.php">LAPOR KESALAHAN</a></li>
-                <li class="active"><a href="#LINK-TO-REKOD-KESALAHAN" >REKOD KESALAHAN</a></li>
+                <li><a href="lapor.php">LAPOR LAPORAN</a></li>
+                <li class="active"><a href="#LINK-TO-REKOD-KESALAHAN" >REKOD LAPORAN</a></li>
               </ul>
                <ul class="nav navbar-nav navbar-right">
                  <li class="dropdown">
@@ -53,9 +53,9 @@
     <div class="row">
       <div class="panel panel-info">
       <!-- Default panel contents -->
-      <div class="panel-heading">Senarai Rekod Kesalahan</div>
+      <div class="panel-heading">Senarai Rekod Laporan</div>
       <div class="panel-body">
-        <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+        <!-- <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
       </div>
 
       <!-- Table -->

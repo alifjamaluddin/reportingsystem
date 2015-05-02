@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Administrator</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ketua Batalion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
     <link href="../../css/vendor/bootstrap.min.css" rel="stylesheet">
@@ -24,15 +24,12 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
               <ul class="nav navbar-nav navbar-left">
-                <li><a href="pengguna.php">PENGGUNA</a></li>
-                <li><a href="kadet.php">PEGAWAI KADET</a></li>
-                <li class="active"><a href="laporan.php">LAPORAN</a></li>
-                <li><a href="kesalahan.php">KESALAHAN</a></li>
-                <li><a href="hukuman.php">HUKUMAN</a></li>
+                <li class="active"><a href="semak.php">SEMAK LAPORAN</a></li>
+                <li><a href="rekod.php">REKOD HUKUMAN</a></li>
               </ul>
                <ul class="nav navbar-nav navbar-right">
                  <li class="dropdown">
-                  <a href="#LINK-TO-VIEW-PROFIL" class="dropdown-toggle" data-toggle="dropdown">Nama ADMIN <b class="caret"></b></a>
+                  <a href="#LINK-TO-VIEW-PROFIL" class="dropdown-toggle" data-toggle="dropdown">Nama KB <b class="caret"></b></a>
                   <span class="dropdown-arrow"></span>
                   <ul class="dropdown-menu">
                     <li><a href="#LINK-TO-VIEW-PROFILE">View Profile</a></li>
@@ -49,39 +46,50 @@
       </div> <!-- /row -->
 <!-- end navbar -->
   <div class="container">
-    <div class="row">
-      <h3>Rekod Kesalahan</h3>
-    </div>
-    <div class="row">
-      <div class="panel panel-info">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Senarai Rekod Kesalahan</div>
-      <div class="panel-body">
-        <!-- <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
-      </div>
+        <div class="row">
+        <h3>Kemaskini Semakan Laporan</h3>
+        </div>
+        <div class="row">
+          <form>
+            <div class="col-xs-12 col-md-6">
+             
+          <div class="form-group">
+            <label for="noid">ID Laporan:</label>
+            <p>ALK0141</p>
+            
+            <label for="nama">Nombor tentera</label>
+            <p>375296</p>
+            
+            <label for="nomatrik">Nama:</label>
+            <p>Nur Siti Binti Ali</p>
+            
+           <label for="pengambilan">Kesalahan:</label>
+           <p>Tidak hadir</p>
 
-      <!-- Table -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>ID Laporan</th>
-            <th>Status</th>
-            <th>Hukuman</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>ALK0141</td>
-            <td>Disemak</td>
-            <td>Tahanan cuti</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    </div>
-  </div>
+            <label for="pa">Status:</label>
+            <select name="level" class="form-control" >
+                  <option value="1">Diterima</option>
+                  <option value="2">Disemak</option>
+                  <option value="3">Dilaksanakan</option>
+          </select>
+            <label for="pa">Hukuman:</label>
+            <select name="level" class="form-control" >
+                  <option value="1">Kawad tambahan</option>
+                  <option value="2">Tahanan cuti</option>
+                  <option value="3">Buang pangkat</option>
+          </select>
+            <label for="pa">Catatan:</label>
+            <input type="text" name="noid" value="" placeholder="Penasihat akademik" class="form-control" />
+            
+            <hr>
+            <input type="submit" name="daftar" value="Update" class="btn btn-primary">
+
+
+          </div>
+        </div>
+          </form>
+        </div>
+      </div>
  <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
     <script src="../../js/vendor/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
