@@ -25,75 +25,44 @@ if (isset($_POST['submit'])) {
 
   $loginID=$_POST['noid']; 
   $myPass=$_POST['password']; 
-  // To protect MySQL injection (more detail about MySQL injection)
-  // $loginID = stripslashes($myID);
-  // $loginPassword = stripslashes($myPass);
-  // $loginID = $connection->real_escape_string($loginID);
-  // $loginPassword = $connection->real_escape_string($loginPassword);
+
   $loginPassword=md5($myPass);
-  // echo $loginPassword;
 
-  // $sql="SELECT f142noID, f142password, f142idlevel FROM t142_akaun WHERE f142noID='$loginID' AND f142password='$loginPassword'";
-// echo $sql;
-// $result = $connection->query($sql);
 
-// if ($result->num_rows > 0) {
-//   $row = mysqli_fetch_assoc($result);
-//   echo "YEs!!";
-//   // enable_door();
-//   // setcookie("user_id", $row['id'], time() + (86400 * 30), "/"); // 86400 = 1 day
-//     // echo "<script>alert('Welcome my employee');window.location='../emppanel.php';</script>";
-// } else {
-//   echo "NO";
-//   // echo "<script>alert('Username/Password wrong');window.location='../emplogin.php';</script>";
-// }
-// $connection->close();
+$LoginRS__query="SELECT * FROM t142_akaun WHERE f142noID='$loginID' AND f142password='$loginPassword'";
 
-$LoginRS__query="SELECT f142noID, f142password, f142idlevel FROM t142_akaun WHERE f142noID='$loginID' AND f142password='$loginPassword'";
-// // // $sql="SELECT * FROM User WHERE username='$myusername' and password='$mypassword'";
-// $result = $connection->query($sql);
 $LoginRS = $connection->query($LoginRS__query);
-// echo $LoginRS;
-  // $LoginRS = mysql_query($LoginRS__query, $connection) or die(mysql_error());
-//   // echo $LoginRS;
-//   // echo $LoginRS;
+
   $loginFoundUser = $LoginRS->num_rows;
-  // echo $loginFoundUser;
+
   if ($loginFoundUser > 0) {
-    // echo "YEAH";
-  $row = mysqli_fetch_assoc($LoginRS);
-    $loginStrGroup  = $row['f142idlevel'];
-    $userName = $row['f142Name'];
-    echo $userName;
+      $row = mysqli_fetch_assoc($LoginRS);
+        $loginStrGroup  = $row['f142idlevel'];
+        $userName = $row['f142Name'];
 
-    
-  //   // $loginStrGroup  = mysql_result($LoginRS,0,'f142idlevel');
-  //   $loginStrGroup  = $row['f142idlevel'];
-    
-  if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
-    //declare two session variables and assign them
-    // $_SESSION['MM_UserName'] = $userName;       
-    // $_SESSION['MM_NoID'] = $loginID;
-    // $_SESSION['MM_UserGroup'] = $loginStrGroup;       
 
-  //   if (isset($_SESSION['PrevUrl']) && false) {
-  //     $MM_redirectLoginSuccess = $_SESSION['PrevUrl'];  
-  // }
-    switch($loginStrGroup){
-      case 1: header("Location: " . $MM_redirectLoginSuccessAdmin );
-      break;
-      case 2: header("Location: " . $MM_redirectLoginSuccessPensyarah );
-      break;
-      case 3: header("Location: " . $MM_redirectLoginSuccessKB );
-      break;
-      case 4: header("Location: " . $MM_redirectLoginSuccessDekan );
-      break;
-      
-  }
-}
+        
+      if (PHP_VERSION >= 5.1) {session_regenerate_id(true);} else {session_regenerate_id();}
+        //declare two session variables and assign them
+        $_SESSION['MM_UserName'] = $userName;       
+        $_SESSION['MM_NoID'] = $loginID;
+        $_SESSION['MM_UserGroup'] = $loginStrGroup;       
+
+        switch($loginStrGroup){
+          case 1: header("Location: " . $MM_redirectLoginSuccessAdmin );
+          break;
+          case 2: header("Location: " . $MM_redirectLoginSuccessPensyarah );
+          break;
+          case 3: header("Location: " . $MM_redirectLoginSuccessKB );
+          break;
+          case 4: header("Location: " . $MM_redirectLoginSuccessDekan );
+          break;  
+        }
+    }
   else {
+    echo "<script>alert('Wrong ID or Password');</script>";
     header("Location: ". $MM_redirectLoginFailed );
-    $loginStrGroup  = mysql_result($LoginRS,0,'f142idlevel');
+
     // echo $loginStrGroup;
   }
 }

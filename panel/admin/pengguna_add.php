@@ -13,19 +13,37 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
   
+  $successMessage = "<script>alert('User succesfully added');</script>";
+  $failedMessage = "<script>alert('User registration failed');</script>";
+  $passwordNotMatchMessage = "<script>alert('Password not match');</script>";
+  $fillFormMessage = "<script>alert('Please fill all the required fields');</script>";
 
-$View__query="SELECT * FROM `t142_akaun`";
-$ViewRS = $connection->query($View__query);
 
+if (isset($_POST['submit'])) {
+  $noid = $_POST['noid'];
+  $level = $_POST['level'];
+  $password = $_POST['pass'];
+  $cpassword = $_POST['cpass'];
+  
 
-  $successMessage = "<script>alert('User succesfully deleted');window.location = './pengguna.php';</script>";
-  $failedMessage = "<script>alert('Something wrong');</script>";
+  if($noid == "" || $password == "" || $cpassword == ""){
+    echo $fillFormMessage;
+  }
+  if($password == $cpassword){
+    $md5Password=md5($password);
+  }else{
+    echo $passwordNotMatchMessage;
+  }
+$avatarURL = AVATAR_PIC;
+$Daftar__query="INSERT INTO `slkpkh2`.`t142_akaun` (`f142idakaun`, `f142noID`, `f142password`, `f142email`, `f142Name`, `f142idlevel`, `f142photo`, `f142ipadd`, `f142thupdate`, `f142updateby`, `f142catatan`) VALUES (NULL, '$noid', '$md5Password', 'your@email.com', 'Your name', '$level', '$avatarURL', NULL, NULL, NULL, NULL);";
+$DaftarRS = $connection->query($Daftar__query);
 
-if($_GET["action"]=="delete" && $_GET['id'] != "" ){
-  $id = $_GET['id'];
-  $Delete__query="DELETE FROM `slkpkh2`.`t142_akaun` WHERE `t142_akaun`.`f142idakaun` = $id";
-  $ViewRS = $connection->query($Delete__query);
+if($DaftarRS){
   echo $successMessage;
+}else{
+  echo $failedMessage;
+}
+
 }
 
 ?>
@@ -82,58 +100,37 @@ if($_GET["action"]=="delete" && $_GET['id'] != "" ){
         </div>
       </div> <!-- /row -->
 <!-- end navbar -->
-  <div class="container">
-    <div class="row">
-      <h3>Pengguna</h3>
-    </div>
-    <div class="row">
-      <div class="panel panel-info">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Senarai Pengguna</div>
-      <div class="panel-body">
-          <a href="pengguna_add.php" class="btn btn-primary">Tambah pengguna</a>
+      <div class="container">
+        <div class="row">
+        <h3>Daftar Pengguna</h3>
+        </div>
+        <div class="row">
+          <form method="post">
+            <div class="col-xs-12 col-md-6">
+             
+          <div class="form-group">
+            <label for="noid">Nombor Staff / tentera:</label>
+            <input type="text" name="noid" value="" placeholder="Nombor tentera" class="form-control" />
+            <label for="level">Peranan:</label>
+            <select name="level" class="form-control" >
+                  <option value="1">Administrator</option>
+                  <option value="2">Pensyarah</option>
+                  <option value="3">Ketua Batalion</option>
+                  <option value="4">Dekan</option>
+          </select>
+            <label for="pass">Katalaluan:</label>
+            <input type="password" name="pass" value="" placeholder="Katalaluan" class="form-control" />
+            <label for="cpass">Sahkan katalaluan:</label>
+            <input type="password" name="cpass" value="" placeholder="Sahkan katalaluan" class="form-control" />
+            <hr>
+            <input type="submit" name="submit" value="Daftar" class="btn btn-primary">
 
-        <!-- <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
+
+          </div>
+        </div>
+          </form>
+        </div>
       </div>
-
-      <!-- Table -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombor ID</th>
-            <th>Tindakan</th>
-          </tr>
-        </thead>
-        <tbody>
-        <?php 
-        $counter = 0;
- 
-
-         while($row = mysqli_fetch_assoc($ViewRS)){ 
-            $counter++;
-          echo '<tr>
-            <th scope="row">'.$counter.'</th>
-            <th>'.$row["f142noID"].'</th>
-            <th>
-              <a href="pengguna_edit.php?id='.$row["f142idakaun"].'" class="btn btn-primary">Kemaskini</a>
-              <a href="?action=delete&id='.$row["f142idakaun"].'" class="btn btn-danger">Delete</a>
-
-            </th>
-          </tr>
-           ';
-          
-         }
-        ?>
-          
-         
-
-
-        </tbody>
-      </table>
-    </div>
-    </div>
-  </div>
  <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
     <script src="../../js/vendor/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
