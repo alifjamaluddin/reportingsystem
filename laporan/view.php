@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Panel Pensyarah</title>
+	<title>Laporan</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
-    <link href="../../css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/vendor/bootstrap.min.css" rel="stylesheet">
 
     <!-- Loading Flat UI -->
-    <link href="../../css/flat-ui.min.css" rel="stylesheet">
-    <link href="../../css/custom.css" rel="stylesheet">
+    <link href="../css/flat-ui.min.css" rel="stylesheet">
+    <link href="../css/custom.css" rel="stylesheet">
 </head>
 <body>
 <!-- navbar -->
@@ -24,8 +24,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
               <ul class="nav navbar-nav navbar-left">
-                <li><a href="lapor.php">LAPOR KESALAHAN</a></li>
-                <li><a href="rekod.php">REKOD LAPORAN</a></li>
+                <!-- <li><a href="#back">BACK</a></li> -->
               </ul>
                <ul class="nav navbar-nav navbar-right">
                  <li class="dropdown">
@@ -45,10 +44,18 @@
         </div>
       </div> <!-- /row -->
 <!-- end navbar -->
+<div class="container">
+	<div class="row">
+		<h3>Detail Laporan</h3>
+	</div>
+	<div class="row">
+		<a href="#back" class="btn btn-primary">BACK</a>
+	</div>
+</div>
  <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
-    <script src="../../js/vendor/jquery.min.js"></script>
+    <script src="../js/vendor/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="../../js/vendor/video.js"></script>
-    <script src="../../js/flat-ui.min.js"></script>
+    <script src="../js/vendor/video.js"></script>
+    <script src="../js/flat-ui.min.js"></script>
 </body>
 </html>

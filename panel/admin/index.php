@@ -1,3 +1,13 @@
+<?php
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+// $userName = $_SESSION['MM_NoID'];
+   echo $_SESSION['MM_NoID'].$_SESSION['MM_UserGroup'].$_SESSION['MM_UserName'];
+    // echo $_SESSION['MM_UserGroup'];
+    // echo $_SESSION['MM_UserName'];
+?>
 <!DOCTYPE html>
 <html>
 <head>
