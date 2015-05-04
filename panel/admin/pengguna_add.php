@@ -84,13 +84,15 @@ if($DaftarRS){
               </ul>
                <ul class="nav navbar-nav navbar-right">
                  <li class="dropdown">
-                  <a href="#LINK-TO-VIEW-PROFIL" class="dropdown-toggle" data-toggle="dropdown">Nama ADMIN <b class="caret"></b></a>
+                  <a href="#LINK-TO-VIEW-PROFIL" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['MM_UserName'];
+?><b class="caret"></b></a>
                   <span class="dropdown-arrow"></span>
                   <ul class="dropdown-menu">
                     <li><a href="#LINK-TO-VIEW-PROFILE">View Profile</a></li>
                     <li><a href="#LINK-TO-EDIT-ACCOUNT">Edit Account</a></li>
                     <li class="divider"></li>
-                    <li><a href="#LINK-TO-LOGOUT">Logout</a></li>
+                    <li><a href="../../logout.php">Logout</a></li>
+                  
                   </ul>
                 </li>
               </ul>
