@@ -1,3 +1,27 @@
+<?php
+// *** Validate request to login to this site.
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+require( "../../process/config.php" );
+
+$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  
+
+// $View__query="SELECT * FROM `laporan`";
+$View__query="SELECT * FROM laporan l LEFT JOIN hukuman h ON l.hukuman=h.id LEFT JOIN kesalahan k ON l.kesalahan=k.id LEFT JOIN pkdt p ON l.kadet=p.no_tentera  WHERE status <> 'Dilaksanakan'";
+$ViewRS = $connection->query($View__query);
+// $row = mysqli_fetch_array($ViewRS);
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,19 +98,39 @@
           </tr>
         </thead>
         <tbody>
-           <tr>
-            <th scope="row">1</th>
-             <th>ALK0141</th>
-            <th>375296</th>
-            <th>Nur Siti Binti Ali</th>
-            <th>Tidak hadir</th>
-            <th>Diterima</th>
-            <th>Kawad tambahan</th>
-            <th>Segera!!</th>
+         <?php 
+        $counter = 0;
+ 
+
+         while($row = mysqli_fetch_array($ViewRS) ){
+            $counter++;
+         
+
+          //  echo ' <tr>
+          //   <th scope="row">'.$counter.'</th>
+          //   <td><a href="viewreport.php?id='.$row["id_laporan"].'">ALK'.$row["id_laporan"].'</td>
+          //   <td>'.$row["status"].'</td>
+          //   <td>'.$row["nama"].'</td>
+          // </tr>';
+          
+          echo '<tr>
+            <th scope="row">'.$counter.'</th>
+             <td><a href="viewreport.php?id='.$row[0].'">ALK'.$row[0].'</td>
+            <th>'.$row[1].'</th>
+            <th>'.$row[16].'</th>
+            <th>'.$row[13].'</th>
+            <th>'.$row[6].'</th>
+            <th>'.$row[11].'</th>
+            <th>'.$row[9].'</th>
             <th>
-              <a href="semak_edit.php" class="btn btn-primary">Kemaskini</a>
+              <a href="semak_edit.php?id='.$row[0].'" class="btn btn-primary">Kemaskini</a>
             </th>
-          </tr>
+          </tr>';
+         }
+        ?>
+
+
+           
           
         </tbody>
       </table>

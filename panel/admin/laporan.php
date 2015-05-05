@@ -18,7 +18,7 @@ if (mysqli_connect_errno())
 $View__query="SELECT * FROM laporan LEFT JOIN hukuman ON laporan.hukuman=hukuman.id";
 $ViewRS = $connection->query($View__query);
 
-;
+
 
 ?>
 

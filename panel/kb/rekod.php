@@ -1,8 +1,32 @@
+<?php
+// *** Validate request to login to this site.
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+require( "../../process/config.php" );
+
+$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  
+
+// $View__query="SELECT * FROM `laporan`";
+$View__query="SELECT * FROM laporan l LEFT JOIN hukuman h ON l.hukuman=h.id LEFT JOIN kesalahan k ON l.kesalahan=k.id LEFT JOIN pkdt p ON l.kadet=p.no_tentera  WHERE status = 'Dilaksanakan'";
+$ViewRS = $connection->query($View__query);
+// $row = mysqli_fetch_array($ViewRS);
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Ketua Batalion</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ketua Batalion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
     <link href="../../css/vendor/bootstrap.min.css" rel="stylesheet">
@@ -25,7 +49,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
               <ul class="nav navbar-nav navbar-left">
                 <li><a href="semak.php">SEMAK LAPORAN</a></li>
-                <li class="active"><a href="#">REKOD HUKUMAN</a></li>
+                <li class="active"><a href="rekod.php">REKOD HUKUMAN</a></li>
               </ul>
                <ul class="nav navbar-nav navbar-right">
                  <li class="dropdown">
@@ -45,21 +69,15 @@
         </div>
       </div> <!-- /row -->
 <!-- end navbar -->
- <div class="container">
+  <div class="container">
     <div class="row">
-      <h3>Semak Laporan</h3>
+      <h3>Rekod Laporan</h3>
     </div>
     <div class="row">
       <div class="panel panel-info">
       <!-- Default panel contents -->
-      <div class="panel-heading">Senarai Semakan Laporan</div>
+      <div class="panel-heading">Senarai Rekod Laporan</div>
       <div class="panel-body">
-      <div class="input-group">
-              <input type="text" name="nomatrik" class="form-control" placeholder="Carian">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Cari</button>
-              </span>
-            </div><!-- /input-group -->
         <!-- <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
       </div>
 
@@ -79,17 +97,37 @@
           </tr>
         </thead>
         <tbody>
-           <tr>
-            <th scope="row">1</th>
-             <th>ALK0141</th>
-            <th>375296</th>
-            <th>Nur Siti Binti Ali</th>
-            <th>Tidak hadir</th>
-            <th>Dilaksanakan</th>
-            <th>Kawad tambahan</th>
-            <th>Segera!!</th>
+         <?php 
+        $counter = 0;
+ 
+
+         while($row = mysqli_fetch_array($ViewRS) ){
+            $counter++;
+         
+
+          //  echo ' <tr>
+          //   <th scope="row">'.$counter.'</th>
+          //   <td><a href="viewreport.php?id='.$row["id_laporan"].'">ALK'.$row["id_laporan"].'</td>
+          //   <td>'.$row["status"].'</td>
+          //   <td>'.$row["nama"].'</td>
+          // </tr>';
+          
+          echo '<tr>
+            <th scope="row">'.$counter.'</th>
+             <td><a href="viewreport.php?id='.$row[0].'">ALK'.$row[0].'</td>
+            <th>'.$row[1].'</th>
+            <th>'.$row[16].'</th>
+            <th>'.$row[13].'</th>
+            <th>'.$row[6].'</th>
+            <th>'.$row[11].'</th>
+            <th>'.$row[9].'</th>
             
-          </tr>
+          </tr>';
+         }
+        ?>
+
+
+           
           
         </tbody>
       </table>

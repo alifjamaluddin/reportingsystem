@@ -26,7 +26,7 @@ $row = mysqli_fetch_array($ViewRS);
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Administrator</title>
+	<title>Ketua Batalion</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
@@ -38,7 +38,7 @@ $row = mysqli_fetch_array($ViewRS);
 </head>
 <body>
 <!-- navbar -->
-      <div class="row">
+  <div class="row">
         <div class="col-xs-12">
           <nav class="navbar navbar-inverse navbar-embossed" role="navigation">
             <div class="navbar-header">
@@ -49,15 +49,12 @@ $row = mysqli_fetch_array($ViewRS);
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
               <ul class="nav navbar-nav navbar-left">
-                <li><a href="pengguna.php">PENGGUNA</a></li>
-                <li><a href="kadet.php">PEGAWAI KADET</a></li>
-                <li class="active"><a href="laporan.php">LAPORAN</a></li>
-                <li><a href="kesalahan.php">KESALAHAN</a></li>
-                <li><a href="hukuman.php">HUKUMAN</a></li>
+                <li class="active"><a href="semak.php">SEMAK LAPORAN</a></li>
+                <li><a href="rekod.php">REKOD HUKUMAN</a></li>
               </ul>
                <ul class="nav navbar-nav navbar-right">
                  <li class="dropdown">
-                  <a href="#LINK-TO-VIEW-PROFIL" class="dropdown-toggle" data-toggle="dropdown">Nama ADMIN <b class="caret"></b></a>
+                  <a href="#LINK-TO-VIEW-PROFIL" class="dropdown-toggle" data-toggle="dropdown">Nama KB <b class="caret"></b></a>
                   <span class="dropdown-arrow"></span>
                   <ul class="dropdown-menu">
                     <li><a href="#LINK-TO-VIEW-PROFILE">View Profile</a></li>
