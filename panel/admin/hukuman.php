@@ -1,3 +1,35 @@
+<?php
+// *** Validate request to login to this site.
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+require( "../../process/config.php" );
+
+$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  
+
+$View__query="SELECT * FROM `hukuman`";
+$ViewRS = $connection->query($View__query);
+
+
+  $successMessage = "<script>alert('Entri Kesalahan Berjaya Dipadam');window.location = './kesalahan.php';</script>";
+  $failedMessage = "<script>alert('Something wrong');</script>";
+
+if($_GET["action"]=="delete" && $_GET['id'] != "" ){
+  $id = $_GET['id'];
+  $Delete__query="DELETE FROM `slkpkh2`.`hukuman` WHERE `hukuman`.`id` = $id";
+  $DeleteRS = $connection->query($Delete__query);
+  echo $successMessage;
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,7 +89,7 @@
       <!-- Default panel contents -->
       <div class="panel-heading">Senarai Hukuman</div>
       <div class="panel-body">
-          <a href="kadet_add.php" class="btn btn-primary">Tambah jenis hukuman</a>
+          <a href="hukuman_add.php" class="btn btn-primary">Tambah jenis hukuman</a>
 
         <!-- <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
       </div>
@@ -72,15 +104,29 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <th>Kawad tambahan</th>
+
+          <?php 
+        $counter = 0;
+ 
+
+         while($row = mysqli_fetch_assoc($ViewRS)){ 
+            $counter++;
+
+
+           echo ' <tr>
+            <th scope="row">'.$counter.'</th>
+            <th>'.$row["nama"].'</th>
             <th>
-              <a href="kadet_edit.php" class="btn btn-primary">Edit</a>
-              <a href="#delete" class="btn btn-danger">Delete</a>
+               <a href="hukuman_edit.php?id='.$row["id"].'" class="btn btn-primary">Kemaskini</a>
+              <a href="?action=delete&id='.$row["id"].'" class="btn btn-danger">Delete</a>
 
             </th>
-          </tr>
+          </tr>';
+          
+         }
+        ?>
+
+         
          
 
 

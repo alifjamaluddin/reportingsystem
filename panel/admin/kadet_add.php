@@ -116,7 +116,42 @@ if($DaftarRS){
             <input type="text" name="nomatrik" value="" placeholder="Nombor matrik" class="form-control" />
             
            <label for="pengambilan">Pengambilan:</label>
-            <input type="text" name="pengambilan" value="" placeholder="Pengambilan" class="form-control" />
+            <select name="pengambilan" class="form-control" >
+              <option value="2006">2015</option>
+              <option value="2006">2014</option>
+              <option value="2005">2013</option>
+              <option value="2004">2012</option>
+              <option value="2003">2011</option>
+              <option value="2002">2010</option>
+              <option value="2001">2009</option>
+              <option value="2000">2008</option>
+              <option value="2007">2007</option>
+              <option value="2006">2006</option>
+              <option value="2005">2005</option>
+              <option value="2004">2004</option>
+              <option value="2003">2003</option>
+              <option value="2002">2002</option>
+              <option value="2001">2001</option>
+              <option value="2000">2000</option>
+              <option value="1999">1999</option>
+              <option value="1998">1998</option>
+              <option value="1997">1997</option>
+              <option value="1996">1996</option>
+              <option value="1995">1995</option>
+              <option value="1994">1994</option>
+              <option value="1993">1993</option>
+              <option value="1992">1992</option>
+              <option value="1991">1991</option>
+              <option value="1990">1990</option>
+              <option value="1989">1989</option>
+              <option value="1988">1988</option>
+              <option value="1987">1987</option>
+              <option value="1986">1986</option>
+              <option value="1985">1985</option>
+              <option value="1984">1984</option>
+              <option value="1983">1983</option>
+             
+               </select>
           <label for="batalion">Batalion:</label>
             <input type="text" name="batalion" value="" placeholder="Batalion" class="form-control" />
             <label for="fakulti">Fakulti:</label>

@@ -13,19 +13,30 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
   
+  $successMessage = "<script>alert('Jenis Hukuman Berjaya Ditambah');</script>";
+  $failedMessage = "<script>alert('Jenis Hukuman Gagal Ditambah'');</script>";
+  $fillFormMessage = "<script>alert('Please fill all the required fields');</script>";
 
-$View__query="SELECT * FROM `kesalahan`";
-$ViewRS = $connection->query($View__query);
 
+if (isset($_POST['submit'])) {
+  $nama = $_POST['nama'];
 
-  $successMessage = "<script>alert('Entri Kesalahan Berjaya Dipadam');window.location = './kesalahan.php';</script>";
-  $failedMessage = "<script>alert('Something wrong');</script>";
+  if($nama == ""){
+    echo $fillFormMessage;
+  }
 
-if($_GET["action"]=="delete" && $_GET['id'] != "" ){
-  $id = $_GET['id'];
-  $Delete__query="DELETE FROM `slkpkh2`.`kesalahan` WHERE `kesalahan`.`id` = $id";
-  $DeleteRS = $connection->query($Delete__query);
-  echo $successMessage;
+  $Daftar__query="INSERT INTO `slkpkh2`.`hukuman` (`id`, `nama`) VALUES (NULL, '$nama')";
+// echo $Daftar__query;
+      $DaftarRS = $connection->query($Daftar__query);
+
+      if($DaftarRS){
+        echo $successMessage;
+
+      }else{
+        echo $failedMessage;
+      }
+ 
+
 }
 
 ?>
@@ -59,8 +70,8 @@ if($_GET["action"]=="delete" && $_GET['id'] != "" ){
                 <li><a href="pengguna.php">PENGGUNA</a></li>
                 <li><a href="kadet.php">PEGAWAI KADET</a></li>
                 <li><a href="laporan.php">LAPORAN</a></li>
-                <li class="active"><a href="kesalahan.php">KESALAHAN</a></li>
-                <li><a href="hukuman.php">HUKUMAN</a></li>
+                <li><a href="kesalahan.php">KESALAHAN</a></li>
+                <li  class="active"><a href="hukuman.php">HUKUMAN</a></li>
               </ul>
                <ul class="nav navbar-nav navbar-right">
                  <li class="dropdown">
@@ -80,61 +91,31 @@ if($_GET["action"]=="delete" && $_GET['id'] != "" ){
         </div>
       </div> <!-- /row -->
 <!-- end navbar -->
+ <!-- end navbar -->
  <div class="container">
-    <div class="row">
-      <h3>Kesalahan</h3>
-    </div>
-    <div class="row">
-      <div class="panel panel-info">
-      <!-- Default panel contents -->
-      <div class="panel-heading">Senarai Kesalahan</div>
-      <div class="panel-body">
-          <a href="kesalahan_add.php" class="btn btn-primary">Tambah jenis kesalahan</a>
+        <div class="row">
+        <h3>Tambah Jenis Hukuman</h3>
+        </div>
+        <div class="row">
+          <form method="post">
+            <div class="col-xs-12 col-md-6">
+             
+          <div class="form-group">
+            
+            
+            <label for="nama">Nama:</label>
+            <input type="text" name="nama" value="" placeholder="Nama" class="form-control" />
+            
+            
+            <hr>
+            <input type="submit" name="submit" value="Tambah" class="btn btn-primary">
 
-        <!-- <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
+
+          </div>
+        </div>
+          </form>
+        </div>
       </div>
-
-      <!-- Table -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Kesalahan</th>
-            <th>Tindakan</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <?php 
-        $counter = 0;
- 
-
-         while($row = mysqli_fetch_assoc($ViewRS)){ 
-            $counter++;
-
-
-           echo ' <tr>
-            <th scope="row">'.$counter.'</th>
-            <th>'.$row["nama"].'</th>
-            <th>
-               <a href="kesalahan_edit.php?id='.$row["id"].'" class="btn btn-primary">Kemaskini</a>
-              <a href="?action=delete&id='.$row["id"].'" class="btn btn-danger">Delete</a>
-
-            </th>
-          </tr>';
-          
-         }
-        ?>
-
-         
-         
-
-
-        </tbody>
-      </table>
-    </div>
-    </div>
-  </div>
  <!-- jQuery (necessary for Flat UI's JavaScript plugins) -->
     <script src="../../js/vendor/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->

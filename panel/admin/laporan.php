@@ -1,3 +1,25 @@
+<?php
+// *** Validate request to login to this site.
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+require( "../../process/config.php" );
+
+$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  
+
+$View__query="SELECT * FROM `laporan`";
+$ViewRS = $connection->query($View__query);
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,12 +93,24 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>ALK0141</td>
-            <td>Disemak</td>
-            <td>Tahanan cuti</td>
-          </tr>
+         <?php 
+        $counter = 0;
+ 
+
+         while($row = mysqli_fetch_assoc($ViewRS)){ 
+            $counter++;
+
+           echo ' <tr>
+            <th scope="row">'.$counter.'</th>
+            <td>'.$row["id_laporan"].'</td>
+            <td>'.$row["status"].'</td>
+            <td>'.$row["hukuman"].'</td>
+          </tr>';
+          
+         }
+        ?>
+
+         
         </tbody>
       </table>
     </div>
