@@ -24,7 +24,7 @@ $ViewRS = $connection->query($View__query);
 if($_GET["action"]=="delete" && $_GET['id'] != "" ){
   $id = $_GET['id'];
   $Delete__query="DELETE FROM `slkpkh2`.`t142_akaun` WHERE `t142_akaun`.`f142idakaun` = $id";
-  $ViewRS = $connection->query($Delete__query);
+  $DeleteRS = $connection->query($Delete__query);
   echo $successMessage;
 }
 

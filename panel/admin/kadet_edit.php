@@ -1,3 +1,70 @@
+<?php
+// *** Validate request to login to this site.
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+require( "../../process/config.php" );
+
+$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  
+  $successMessage = "<script>alert('User succesfully updated');window.location = './kadet.php';</script>";
+  $failedMessage = "<script>alert('User update failed');</script>";
+  $passwordNotMatchMessage = "<script>alert('Password not match');</script>";
+  $fillFormMessage = "<script>alert('Please fill all the required fields');</script>";
+
+  $id = $_GET['id'];
+  $View_query = "SELECT * FROM `pkdt` where `id` = '$id'";
+
+  // echo $View_query;
+  $ViewRS = $connection->query($View_query);
+  $row = mysqli_fetch_assoc($ViewRS);
+  
+
+        
+
+  if (isset($_POST['submit'])) {
+  $noid = $_POST['noid'];
+  $nama = $_POST['nama'];
+  $nomatrik = $_POST['nomatrik'];
+  $pengambilan = $_POST['pengambilan'];
+  $pa = $_POST['pa'];
+  $batalion = $_POST['batalion'];
+  $fakulti = $_POST['fakulti'];
+
+
+  if($noid == "" || $nama == "" || $nomatrik == "" || $pengambilan == "" || $pa == "" || $batalion == "" || $fakulti == ""){
+    echo $fillFormMessage;
+  }else{
+
+      $Update__query="UPDATE `slkpkh2`.`pkdt` 
+      SET `no_matrik` = '$nomatrik', `nama` = '$nama', `no_tentera` = '$noid', 
+      `pengambilan` = '$pengambilan', `batalion` = '$batalion', `fakulti` = '$fakulti', 
+      `penyelia_akademik` = '$pa' 
+      WHERE `pkdt`.`id` = '$id'";
+
+      $UpdateRS = $connection->query($Update__query);
+
+      if($UpdateRS){
+        echo $successMessage;
+      }else{
+        echo $failedMessage;
+      }
+  }
+ 
+
+      
+
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,27 +120,34 @@
         <h3>Kemaskini Pegawai Kadet</h3>
         </div>
         <div class="row">
-          <form>
+          <form method="post">
             <div class="col-xs-12 col-md-6">
              
           <div class="form-group">
             <label for="noid">Nombor tentera:</label>
-            <input type="text" name="noid" value="" placeholder="Nombor tentera" class="form-control" />
+            <input type="text" name="noid" value="<?php echo $row['no_tentera'];?>" placeholder="Nombor tentera" class="form-control" />
             
             <label for="nama">Nama:</label>
-            <input type="text" name="noid" value="" placeholder="Nama" class="form-control" />
+            <input type="text" name="nama" value="<?php echo $row['nama'];?>" placeholder="Nama" class="form-control" />
             
             <label for="nomatrik">Nombor matrik:</label>
-            <input type="text" name="noid" value="" placeholder="Nombor matrik" class="form-control" />
+            <input type="text" name="nomatrik" value="<?php echo $row['no_matrik'];?>" placeholder="Nombor matrik" class="form-control" />
             
            <label for="pengambilan">Pengambilan:</label>
-            <input type="text" name="noid" value="" placeholder="Pengambilan" class="form-control" />
+            <input type="text" name="pengambilan" value="<?php echo $row['pengambilan'];?>" placeholder="Pengambilan" class="form-control" />
+
+            <label for="pa">Batalion:</label>
+            <input type="text" name="batalion" value="<?php echo $row['batalion'];?>" placeholder="Batalion" class="form-control" />
+            
+            <label for="pa">Fakulti:</label>
+            <input type="text" name="fakulti" value="<?php echo $row['fakulti'];?>" placeholder="Fakulti" class="form-control" />
+
 
             <label for="pa">Penasihat Akademik:</label>
-            <input type="text" name="noid" value="" placeholder="Penasihat akademik" class="form-control" />
+            <input type="text" name="pa" value="<?php echo $row['penyelia_akademik'];?>" placeholder="Penasihat akademik" class="form-control" />
             
             <hr>
-            <input type="submit" name="daftar" value="Update" class="btn btn-primary">
+            <input type="submit" name="submit" value="Update" class="btn btn-primary">
 
 
           </div>

@@ -1,3 +1,36 @@
+<?php
+// *** Validate request to login to this site.
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+require( "../../process/config.php" );
+
+$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  
+
+$View__query="SELECT * FROM `pkdt`";
+$ViewRS = $connection->query($View__query);
+
+
+  $successMessage = "<script>alert('User succesfully deleted');window.location = './kadet.php';</script>";
+  $failedMessage = "<script>alert('Something wrong');</script>";
+
+if($_GET["action"]=="delete" && $_GET['id'] != "" ){
+  $id = $_GET['id'];
+  $Delete__query="DELETE FROM `slkpkh2`.`pkdt` WHERE `id` = '$id'";
+  $DeleteRS = $connection->query($Delete__query);
+  echo $successMessage;
+}
+
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,26 +104,41 @@
             <th>Nama</th>
             <th>No matrik</th>
             <th>Pengambilan</th>
+            <th>Batalion</th>
+            <th>Fakulti</th>
             <th>Penasihat Akademik</th>
             <th>Tindakan</th>
           </tr>
         </thead>
         <tbody>
+         <?php 
+        $counter = 0;
+ 
+
+         while($row = mysqli_fetch_assoc($ViewRS)){ 
+            $counter++;
+            // echo $counter;
+   
+           echo '
           <tr>
-            <th scope="row">1</th>
-            <th>3013522</th>
-            <th>Aziz</th>
-            <th>2120471</th>
-            <th>2011</th>
-            <th>Dr. Sayed</th>
+            <th scope="row">'.$counter.'</th>
+            <th>'.$row["no_matrik"].'</th>
+            <th>'.$row["nama"].'</th>
+            <th>'.$row["no_tentera"].'</th>
+            <th>'.$row["pengambilan"].'</th>
+            <th>'.$row["batalion"].'</th>
+            <th>'.$row["fakulti"].'</th>
+            <th>'.$row["penyelia_akademik"].'</th>
             <th>
-              <a href="kadet_edit.php" class="btn btn-primary">Edit</a>
-              <a href="#delete" class="btn btn-danger">Delete</a>
+              <a href="kadet_edit.php?id='.$row["id"].'" class="btn btn-primary">Kemaskini</a>
+              <a href="?action=delete&id='.$row["id"].'" class="btn btn-danger">Delete</a>
+              
 
             </th>
-          </tr>
-         
-
+          </tr>';
+          
+         }
+        ?>
 
         </tbody>
       </table>

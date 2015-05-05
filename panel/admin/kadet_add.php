@@ -1,3 +1,52 @@
+<?php
+// *** Validate request to login to this site.
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+require( "../../process/config.php" );
+
+$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  
+  $successMessage = "<script>alert('User succesfully added');</script>";
+  $failedMessage = "<script>alert('User registration failed');</script>";
+  $fillFormMessage = "<script>alert('Please fill all the required fields');</script>";
+
+
+if (isset($_POST['submit'])) {
+  $noid = $_POST['noid'];
+  $nama = $_POST['nama'];
+  $nomatrik = $_POST['nomatrik'];
+  $pengambilan = $_POST['pengambilan'];
+  $pa = $_POST['pa'];
+  $batalion = $_POST['batalion'];
+  $fakulti = $_POST['fakulti'];
+
+
+  if($noid == "" || $nama == "" || $nomatrik == "" || $pengambilan == "" || $pa == ""){
+    echo $fillFormMessage;
+  }
+ 
+$Daftar__query="INSERT INTO `slkpkh2`.`pkdt` (`no_matrik`, `nama`, `no_tentera`, `pengambilan`, `batalion`, `fakulti`, `penyelia_akademik`) VALUES ('$nomatrik', '$nama', '$noid', '$pengambilan', '$batalion', '$fakulti', '$pa');";
+// echo $Daftar__query;
+$DaftarRS = $connection->query($Daftar__query);
+
+if($DaftarRS){
+  echo $successMessage;
+
+}else{
+  echo $failedMessage;
+}
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +102,7 @@
         <h3>Daftar Pegawai Kadet</h3>
         </div>
         <div class="row">
-          <form>
+          <form method="post">
             <div class="col-xs-12 col-md-6">
              
           <div class="form-group">
@@ -61,19 +110,22 @@
             <input type="text" name="noid" value="" placeholder="Nombor tentera" class="form-control" />
             
             <label for="nama">Nama:</label>
-            <input type="text" name="noid" value="" placeholder="Nama" class="form-control" />
+            <input type="text" name="nama" value="" placeholder="Nama" class="form-control" />
             
             <label for="nomatrik">Nombor matrik:</label>
-            <input type="text" name="noid" value="" placeholder="Nombor matrik" class="form-control" />
+            <input type="text" name="nomatrik" value="" placeholder="Nombor matrik" class="form-control" />
             
            <label for="pengambilan">Pengambilan:</label>
-            <input type="text" name="noid" value="" placeholder="Pengambilan" class="form-control" />
-
+            <input type="text" name="pengambilan" value="" placeholder="Pengambilan" class="form-control" />
+          <label for="batalion">Batalion:</label>
+            <input type="text" name="batalion" value="" placeholder="Batalion" class="form-control" />
+            <label for="fakulti">Fakulti:</label>
+            <input type="text" name="fakulti" value="" placeholder="Fakulti" class="form-control" />
             <label for="pa">Penasihat Akademik:</label>
-            <input type="text" name="noid" value="" placeholder="Penasihat akademik" class="form-control" />
+            <input type="text" name="pa" value="" placeholder="Penasihat akademik" class="form-control" />
             
             <hr>
-            <input type="submit" name="daftar" value="Daftar" class="btn btn-primary">
+            <input type="submit" name="submit" value="Daftar" class="btn btn-primary">
 
 
           </div>
