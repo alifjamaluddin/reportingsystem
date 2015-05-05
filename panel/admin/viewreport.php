@@ -13,29 +13,19 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
   
-$userID = $_SESSION['MM_NoID'];
-$View__query="SELECT * FROM `laporan` WHERE pelapor='$userID'";
-// echo $View__query;
+
+// $View__query="SELECT * FROM `laporan`";
+$View__query="SELECT * FROM laporan LEFT JOIN hukuman ON laporan.hukuman=hukuman.id";
 $ViewRS = $connection->query($View__query);
 
-
-  // $successMessage = "<script>alert('User succesfully deleted');window.location = './pengguna.php';</script>";
-  // $failedMessage = "<script>alert('Something wrong');</script>";
-
-// if($_GET["action"]=="delete" && $_GET['id'] != "" ){
-//   $id = $_GET['id'];
-//   $Delete__query="DELETE FROM `slkpkh2`.`t142_akaun` WHERE `t142_akaun`.`f142idakaun` = $id";
-//   $DeleteRS = $connection->query($Delete__query);
-//   echo $successMessage;
-// }
+;
 
 ?>
-
 
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Rekod Kesalahan</title>
+	<title>Administrator</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
@@ -58,12 +48,15 @@ $ViewRS = $connection->query($View__query);
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse-01">
               <ul class="nav navbar-nav navbar-left">
-                <li><a href="lapor.php">LAPOR LAPORAN</a></li>
-                <li class="active"><a href="#LINK-TO-REKOD-KESALAHAN" >REKOD LAPORAN</a></li>
+                <li><a href="pengguna.php">PENGGUNA</a></li>
+                <li><a href="kadet.php">PEGAWAI KADET</a></li>
+                <li class="active"><a href="laporan.php">LAPORAN</a></li>
+                <li><a href="kesalahan.php">KESALAHAN</a></li>
+                <li><a href="hukuman.php">HUKUMAN</a></li>
               </ul>
                <ul class="nav navbar-nav navbar-right">
                  <li class="dropdown">
-                  <a href="#LINK-TO-VIEW-PROFIL" class="dropdown-toggle" data-toggle="dropdown">Nama Pensyarah <b class="caret"></b></a>
+                  <a href="#LINK-TO-VIEW-PROFIL" class="dropdown-toggle" data-toggle="dropdown">Nama ADMIN <b class="caret"></b></a>
                   <span class="dropdown-arrow"></span>
                   <ul class="dropdown-menu">
                     <li><a href="#LINK-TO-VIEW-PROFILE">View Profile</a></li>
@@ -79,7 +72,6 @@ $ViewRS = $connection->query($View__query);
         </div>
       </div> <!-- /row -->
 <!-- end navbar -->
-
   <div class="container">
     <div class="row">
       <h3>Rekod Kesalahan</h3>
@@ -87,47 +79,16 @@ $ViewRS = $connection->query($View__query);
     <div class="row">
       <div class="panel panel-info">
       <!-- Default panel contents -->
-      <div class="panel-heading">Senarai Rekod Laporan</div>
+      <div class="panel-heading">Senarai Rekod Kesalahan</div>
       <div class="panel-body">
         <!-- <p>Some default panel content here. Nulla vitae elit libero, a pharetra augue. Aenean lacinia bibendum nulla sed consectetur. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> -->
       </div>
 
-      <!-- Table -->
-      <table class="table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>ID Laporan</th>
-            <th>Tarikh</th>
-            <th>Status</th>
-            <th>Catatan</th>
-
-          </tr>
-        </thead>
-        <tbody>
-         <?php 
-        $counter = 0;
- 
-
-         while($row = mysqli_fetch_assoc($ViewRS)){ 
-            $counter++;
-         
-
-           echo ' <tr>
-            <th scope="row">1</th>
-            <td><a href="#viewlaporan">ALK'.$row["id_laporan"].'</a></td>
-            <td>'.$row["tarikh"].'</td>
-            <td>'.$row["status"].'</td>
-            <td>'.$row["catatan"].'</td>
-          </tr>';
-          
-         }
-        ?>
-
-         
-          
-        </tbody>
-      </table>
+    
+      <p>Nama:</p>
+      <p>Nama:</p>
+      <p>Nama:</p>
+      <p>Nama:</p>
     </div>
     </div>
   </div>

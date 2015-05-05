@@ -1,3 +1,66 @@
+<?php
+// *** Validate request to login to this site.
+if (!isset($_SESSION)) {
+  session_start();
+}
+
+require( "../../process/config.php" );
+
+$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  
+  $successMessage = "<script>alert('Laporan Berjaya');</script>";
+  $failedMessage = "<script>alert('Laporan Gagal');</script>";
+  $fillFormMessage = "<script>alert('Please fill all the required fields');</script>";
+
+  
+$userID = $_SESSION['MM_NoID'];
+$status = "Dihantar";
+$hukuman = NULL;
+if (isset($_POST['cari'])) {
+    $nomatrik = $_POST['nomatrik'];
+    $View_query = "SELECT * FROM `pkdt` WHERE `no_matrik` LIKE '$nomatrik'";
+    // echo $View_query;
+    $ViewRS = $connection->query($View_query);
+    $row = mysqli_fetch_assoc($ViewRS);
+    echo $userID;
+}
+
+
+if (isset($_POST['submit'])) {
+$nomatrik = $_POST['nomatrik'];
+$notentera = $_POST['notentera'];
+$kos = $_POST['kos'];
+$tarikh = $_POST['tarikh'];
+$masa = $_POST['masa'];
+$kesalahan = $_POST['kesalahan'];
+$keterangan = $_POST['keterangan'];
+
+  if($nomatrik == "" || $notentera == "" || $kos == ""){
+    echo $fillFormMessage;
+  }
+  
+$Daftar__query="INSERT INTO `slkpkh2`.`laporan` (`id_laporan`, `kadet`, `tarikh`, `masa`, `pelapor`, `matapelajaran`, `status`, `kesalahan`, `hukuman`, `catatan`) 
+VALUES ('', '$notentera', '$tarikh', '$masa', '$userID', '$kos ', '$status', '$kesalahan', '$hukuman', '$keterangan');";
+$DaftarRS = $connection->query($Daftar__query);
+// echo $Daftar__query;
+
+if($DaftarRS){
+  echo $successMessage;
+}else{
+  echo $failedMessage;
+}
+
+}
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -49,47 +112,51 @@
         <h3>Lapor Kesalahan</h3>
         </div>
         <div class="row">
-          <form>
+          <form method="post">
             <div class="col-xs-12 col-md-6">
              
           <div class="form-group">
             <label for="nomatrik">Cari Pelajar:</label>
             <div class="input-group">
-              <input type="text" name="nomatrik" class="form-control" placeholder="Nombor matrik">
+              <input type="text" name="nomatrik" value="<?php echo $row['no_matrik']; ?>" class="form-control" placeholder="Nombor matrik">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Cari</button>
+                <button class="btn btn-default" type="submit" name="cari">Cari</button>
               </span>
             </div><!-- /input-group -->
             <label for="nama">Nama:</label>
-            <input type="text" name="nama" value="" placeholder="Nama Pelajar" class="form-control" />
-            <label for="nama">Nombor tentera:</label>
-            <input type="text" name="notentera" value="" placeholder="Nombor tentera" class="form-control" />
-            <label for="nama">Pengambilan:</label>
-            <input type="text" name="pengambilan" value="" placeholder="Pengambilan" class="form-control" />
-            <label for="nama">Mata Pelajaran:</label>
+            <input type="text" name="nama" value="<?php echo $row['nama']; ?>" placeholder="Nama Pelajar" class="form-control" />
+            <label for="notentera">Nombor tentera:</label>
+            <input type="text" name="notentera" value="<?php echo $row['no_tentera']; ?>" placeholder="Nombor tentera" class="form-control" />
+            <label for="pengambilan">Pengambilan:</label>
+            <input type="text" name="pengambilan" value="<?php echo $row['pengambilan']; ?>" placeholder="Pengambilan" class="form-control" />
+            <label for="kos">Mata Pelajaran:</label>
             <input type="text" name="kos" value="" placeholder="Mata pelajaran" class="form-control" />
-            <label for="nama">Tarikh:</label>
+            <label for="tarikh">Tarikh:</label>
             <input type="date" name="tarikh" value="" class="form-control" />
-            <label for="nama">Masa:</label>
+            <label for="masa">Masa:</label>
             <input type="time" name="masa" value="" class="form-control" />
-            <label for="nama">Nama Penasihat Akademik:</label>
-            <input type="text" name="penasihat" value="" placeholder="Nama Penasihat Akademik" class="form-control" />
-            <label for="nama">Kesalahan:</label>
+            <label for="penasihat">Nama Penasihat Akademik:</label>
+            <input type="text" name="penasihat" value="<?php echo $row['penyelia_akademik']; ?>" placeholder="Nama Penasihat Akademik" class="form-control" />
+            <label for="kesalahan">Kesalahan:</label>
             <select name="kesalahan" class="form-control" >
-                  <option value="1">Tidak hadir kuliah / tutorial / amali / penilaian akademik tanpa sebab munasabah</option>
-                  <option value="2">Lapor sakit Attend B, tetapi tidak hadir kuliah / tutorial / amali / penilaian akademik</option>
-                  <option value="3">Tidur sewaktu kuliah / tutorial / amali / penilaian akademik</option>
-                  <option value="4">Terlewat masuk kelas kuliah / tutorial / amali / penilaian akademik</option>
-                  <option value="5">Menipu/meniru dalam penilaian akademik</option>
-                  <option value="6">Keputusan penilaian akademik tidak memuaskan</option>
-                  <option value="7">Lain-lain...(sila nyatakan)</option> 
+
+
+            <?php
+                  $Kesalahan__query="SELECT * FROM `kesalahan`";
+                  $KesalahanRS = $connection->query($Kesalahan__query);
+
+                    while($row = mysqli_fetch_assoc($KesalahanRS)){ 
+                         echo ' <option value="'.$row["id"].'">'.$row["nama"].'</option>';
+                    }
+            ?>
+                  
           </select>
-            <label for="nama">Keterangan/Catatan:</label>
+            <label for="keterangan">Keterangan/Catatan:</label>
             <input type="text" name="keterangan" value="" placeholder="Keterangan" class="form-control" />
             <hr>
             <input type="checkbox" name="pengesahan" value="Pengesahan">
             Saya akui bahawa laporan yang dibuat adalah benar.<br>
-            <input type="submit" name="lapor" value="Submit" class="btn btn-primary">
+            <input type="submit" name="submit" value="Submit" class="btn btn-primary">
 
           </div>
         </div>

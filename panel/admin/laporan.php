@@ -14,9 +14,11 @@ if (mysqli_connect_errno())
   }
   
 
-$View__query="SELECT * FROM `laporan`";
+// $View__query="SELECT * FROM `laporan`";
+$View__query="SELECT * FROM laporan LEFT JOIN hukuman ON laporan.hukuman=hukuman.id";
 $ViewRS = $connection->query($View__query);
 
+;
 
 ?>
 
@@ -102,9 +104,9 @@ $ViewRS = $connection->query($View__query);
 
            echo ' <tr>
             <th scope="row">'.$counter.'</th>
-            <td>'.$row["id_laporan"].'</td>
+            <td><a href="viewreport.php?id='.$row["id_laporan"].'">ALK'.$row["id_laporan"].'</td>
             <td>'.$row["status"].'</td>
-            <td>'.$row["hukuman"].'</td>
+            <td>'.$row["nama"].'</td>
           </tr>';
           
          }
