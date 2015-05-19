@@ -105,7 +105,7 @@ if (mysqli_connect_errno())
                     <li><a href="#LINK-TO-VIEW-PROFILE">View Profile</a></li>
                     <li><a href="#LINK-TO-EDIT-ACCOUNT">Edit Account</a></li>
                     <li class="divider"></li>
-                    <li><a href="#LINK-TO-LOGOUT">Logout</a></li>
+                    <li><a href="../../logout.php">Logout</a></li>
                   </ul>
                 </li>
               </ul>

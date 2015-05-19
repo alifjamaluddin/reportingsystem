@@ -13,7 +13,7 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
   
-  $successMessage = "<script>alert('Jenis Kesalahan Berjaya Ditambah');</script>";
+  $successMessage = "<script>alert('Jenis Kesalahan Berjaya Ditambah');window.location = './kesalahan.php';</script>";
   $failedMessage = "<script>alert('Jenis Kesalahan Gagal Ditambah'');</script>";
   $fillFormMessage = "<script>alert('Please fill all the required fields');</script>";
 
@@ -82,7 +82,7 @@ if (isset($_POST['submit'])) {
                     <li><a href="#LINK-TO-VIEW-PROFILE">View Profile</a></li>
                     <li><a href="#LINK-TO-EDIT-ACCOUNT">Edit Account</a></li>
                     <li class="divider"></li>
-                    <li><a href="#LINK-TO-LOGOUT">Logout</a></li>
+                    <li><a href="../../logout.php">Logout</a></li>
                   </ul>
                 </li>
               </ul>

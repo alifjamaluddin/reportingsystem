@@ -13,7 +13,7 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
   
-  $successMessage = "<script>alert('User succesfully added');</script>";
+  $successMessage = "<script>alert('User succesfully added');window.location = './pengguna.php';</script>";
   $failedMessage = "<script>alert('User registration failed');</script>";
   $passwordNotMatchMessage = "<script>alert('Password not match');</script>";
   $fillFormMessage = "<script>alert('Please fill all the required fields');</script>";
