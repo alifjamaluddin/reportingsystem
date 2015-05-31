@@ -39,6 +39,7 @@ $LoginRS = $connection->query($LoginRS__query);
       $row = mysqli_fetch_assoc($LoginRS);
         $loginStrGroup  = $row['f142idlevel'];
         $userName = $row['f142Name'];
+        $idakaun = $row['f142idakaun'];
 
 
         
@@ -46,6 +47,7 @@ $LoginRS = $connection->query($LoginRS__query);
         //declare two session variables and assign them
         $_SESSION['MM_UserName'] = $userName;       
         $_SESSION['MM_NoID'] = $loginID;
+        $_SESSION['MM_AkaunID'] = $idakaun;
         $_SESSION['MM_UserGroup'] = $loginStrGroup;       
 
         switch($loginStrGroup){
@@ -138,7 +140,7 @@ $LoginRS = $connection->query($LoginRS__query);
 
   </div>
 </div>
-
+<!-- 
 <footer>
       <div class="container">
         
@@ -148,7 +150,7 @@ $LoginRS = $connection->query($LoginRS__query);
             <p>Go to my website for enquiry <a href="http://www.kodegeek.net">KODEGEEK</a><br/>
               
             </p>
-          </div> <!-- /col-xs-7 -->
+          </div> /col-xs-7
 
           <div class="col-md-7">
             <div class="footer-banner">
@@ -161,7 +163,7 @@ $LoginRS = $connection->query($LoginRS__query);
           </div>
         </div>
       </div>
- </footer>
+ </footer> -->
 
 
     <!-- /.container -->

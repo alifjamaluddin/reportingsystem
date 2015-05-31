@@ -37,7 +37,7 @@ $row = mysqli_fetch_array($ViewRS);
     <link href="../../css/custom.css" rel="stylesheet">
 </head>
 <body>
-<?php include('navbar-admin.php'); ?>
+<?php include('navbar-ps.php'); ?>
   <div class="container">
     <div class="row">
       <h3>Rekod Kesalahan</h3>
@@ -45,8 +45,7 @@ $row = mysqli_fetch_array($ViewRS);
     <div class="row">
       <!-- Default panel contents -->
      
-
-      
+     <?php // echo json_encode($row); ?>
       <p><b>Nombor Laporan:</b></p>
       <p>ALK<?php echo $row[0]; ?> </p>
       <p><b>Nombor Tentera:</b></p>
@@ -60,11 +59,11 @@ $row = mysqli_fetch_array($ViewRS);
       <p><b>Masa:</b></p>
       <p><?php echo $row[3]; ?> </p>
       <p><b>Kesalahan:</b></p>
-      <p><?php echo $row[13]; ?> </p>
+      <p><?php echo $row[14]; ?> </p>
       <p><b>Hukuman:</b></p>
-      <p><?php echo $row[11]; ?> </p>
+      <p><?php echo $row[12]; ?> </p>
       <p><b>Catatan:</b></p>
-      <p><?php echo $row[9]; ?> </p>
+      <p><?php echo $row[10]; ?> </p>
       <p><b>Status:</b></p>
       <p><?php echo $row[6]; ?> </p>
       
