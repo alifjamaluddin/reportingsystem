@@ -11,7 +11,7 @@ if (!isset($_SESSION)) {
 
   $MM_redirectLoginFailed = "#LOGINFAILED";//TODO
 
-if(isset($_SESSION['MM_UserGroup'])){
+if(empty($_SESSION['MM_UserGroup'])){
   switch($_SESSION['MM_UserGroup']){
           case 1: header("Location: " . $MM_redirectLoginSuccessAdmin );
           break;

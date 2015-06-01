@@ -14,5 +14,9 @@ switch($level){
           break;
           case 4: //header("Location: " . $MM_redirectLoginSuccessDekan );
           break;  
+          default: 
+              echo "<script>alert('Please sign in.'); window.location = '../../';</script>";
+              header("Location: " . $MM_signInFirst ); 
+          break;
         }
 ?> 

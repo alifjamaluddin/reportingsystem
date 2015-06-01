@@ -5,6 +5,8 @@ if (!isset($_SESSION)) {
 }
 include("check_access.php");
 require( "../../process/config.php" );
+$id = $_SESSION['MM_NoID'];
+$name = $_SESSION['MM_UserName'];
 
 $connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
 // Check connection

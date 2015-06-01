@@ -13,9 +13,8 @@ if (mysqli_connect_errno())
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
   
-
-// $View__query="SELECT * FROM `laporan`";
-$View__query="SELECT * FROM laporan l LEFT JOIN hukuman h ON l.hukuman=h.id LEFT JOIN kesalahan k ON l.kesalahan=k.id";
+$id = $_GET['id'];
+$View__query="SELECT * FROM laporan l LEFT JOIN hukuman h ON l.hukuman=h.id LEFT JOIN kesalahan k ON l.kesalahan=k.id where l.id_laporan=".$id;
 $ViewRS = $connection->query($View__query);
 $row = mysqli_fetch_array($ViewRS);
 
@@ -45,7 +44,7 @@ $row = mysqli_fetch_array($ViewRS);
     <div class="row">
       <!-- Default panel contents -->
      
-     <?php // echo json_encode($row); ?>
+     
       <p><b>Nombor Laporan:</b></p>
       <p>ALK<?php echo $row[0]; ?> </p>
       <p><b>Nombor Tentera:</b></p>
@@ -66,6 +65,8 @@ $row = mysqli_fetch_array($ViewRS);
       <p><?php echo $row[10]; ?> </p>
       <p><b>Status:</b></p>
       <p><?php echo $row[6]; ?> </p>
+          <p><b>Pengesahan Dekan:</b></p>
+      <p><?php echo $row[9]; ?> </p>
       
 
 

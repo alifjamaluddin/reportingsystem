@@ -13,8 +13,8 @@ if (mysqli_connect_errno())
   }
   
 
-// $View__query="SELECT * FROM `laporan`";
-$View__query="SELECT * FROM laporan l LEFT JOIN hukuman h ON l.hukuman=h.id LEFT JOIN kesalahan k ON l.kesalahan=k.id";
+$id = $_GET['id'];
+$View__query="SELECT * FROM laporan l LEFT JOIN hukuman h ON l.hukuman=h.id LEFT JOIN kesalahan k ON l.kesalahan=k.id where l.id_laporan=".$id;
 $ViewRS = $connection->query($View__query);
 $row = mysqli_fetch_array($ViewRS);
 
