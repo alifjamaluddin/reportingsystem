@@ -4,6 +4,13 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
+ $MM_redirectLoginSuccessAdmin = "panel/admin";
+  $MM_redirectLoginSuccessPensyarah = "panel/pensyarah";
+  $MM_redirectLoginSuccessKB = "panel/kb";
+  $MM_redirectLoginSuccessDekan = "panel/dekan";
+
+  $MM_redirectLoginFailed = "#LOGINFAILED";//TODO
+
 if(isset($_SESSION['MM_UserGroup'])){
   switch($_SESSION['MM_UserGroup']){
           case 1: header("Location: " . $MM_redirectLoginSuccessAdmin );
@@ -17,7 +24,6 @@ if(isset($_SESSION['MM_UserGroup'])){
         }
 }
 
-include("check_access.php");
 
 require( "process/config.php" );
 
@@ -132,7 +138,7 @@ $LoginRS = $connection->query($LoginRS__query);
       </div> <!-- /row -->
 <!-- end navbar -->
   <div class="jumbotron" id="jumbo-banner"> 
-  </div>w
+  </div>
 <div class="jumbotron" id="jumbo-home">
   <div class="container">
    <h3>Sistem Laporan Kesalahan</h3>
