@@ -3,15 +3,15 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: May 18, 2015 at 06:12 AM
+-- Generation Time: Jun 01, 2015 at 09:24 AM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+08:00";
+SET time_zone = "+00:00";
 
 --
--- Database: `slkpkh`
+-- Database: `slkpkh2`
 --
 
 -- --------------------------------------------------------
@@ -24,7 +24,7 @@ CREATE TABLE `hukuman` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `hukuman`
@@ -33,7 +33,9 @@ CREATE TABLE `hukuman` (
 INSERT INTO `hukuman` (`id`, `nama`) VALUES
 (0, 'Belum ditetapkan'),
 (1, 'Tahanan cuti'),
-(2, 'Kawad tambahan');
+(2, 'Kawad tambahan'),
+(3, 'Gantung Belajar'),
+(4, 'Potong elaun');
 
 -- --------------------------------------------------------
 
@@ -45,7 +47,7 @@ CREATE TABLE `kesalahan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `kesalahan`
@@ -57,7 +59,8 @@ INSERT INTO `kesalahan` (`id`, `nama`) VALUES
 (3, 'Tidur sewaktu kuliah/tutorial/amali/penilaian akademik'),
 (4, 'Terlewat masuk kelas kuliah/tutorial/amali/penilaian akademik'),
 (5, 'Menipu/meniru dalam penilaian akademik'),
-(6, 'Keputusan penilaian akademik tidak memuaskan');
+(6, 'Keputusan penilaian akademik tidak memuaskan'),
+(7, 'Tidak membawa kelengkapan perang2');
 
 -- --------------------------------------------------------
 
@@ -75,6 +78,7 @@ CREATE TABLE `laporan` (
   `status` varchar(100) NOT NULL,
   `kesalahan` int(11) NOT NULL,
   `hukuman` int(11) NOT NULL,
+  `dekansah` varchar(15) NOT NULL DEFAULT 'Dalam semakan',
   `catatan` varchar(200) NOT NULL,
   PRIMARY KEY (`id_laporan`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
@@ -83,8 +87,8 @@ CREATE TABLE `laporan` (
 -- Dumping data for table `laporan`
 --
 
-INSERT INTO `laporan` (`id_laporan`, `kadet`, `tarikh`, `masa`, `pelapor`, `matapelajaran`, `status`, `kesalahan`, `hukuman`, `catatan`) VALUES
-(4, '12345', '2015-05-05', '13:00:00', 'abcd', 'Sains ', 'Dilaksanakan', 1, 1, 'Test jer kot2');
+INSERT INTO `laporan` (`id_laporan`, `kadet`, `tarikh`, `masa`, `pelapor`, `matapelajaran`, `status`, `kesalahan`, `hukuman`, `dekansah`, `catatan`) VALUES
+(4, '12345', '2015-05-05', '13:00:00', 'abcd', 'Sains ', 'Dilaksanakan', 1, 1, 'Sah', 'Test jer kot2');
 
 -- --------------------------------------------------------
 
@@ -157,14 +161,13 @@ CREATE TABLE `t142_akaun` (
   `f142catatan` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`f142idakaun`),
   UNIQUE KEY `f142noIC` (`f142noID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20803 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=20806 ;
 
 --
 -- Dumping data for table `t142_akaun`
 --
 
 INSERT INTO `t142_akaun` (`f142idakaun`, `f142noID`, `f142password`, `f142email`, `f142Name`, `f142idlevel`, `f142photo`, `f142ipadd`, `f142thupdate`, `f142updateby`, `f142catatan`) VALUES
-(2, '0000-00', '94f6d7e04a4d452035300f18b984988c', 'admin_slkpkh@yahoo.com', 'ADMINISTRATOR', 1, 'exercise-quotes-tumblrget-your-gym-on-motivational-mondays-caros-weight-loss-journey-tpthzkwm.jpg', NULL, NULL, NULL, 'Test'),
-(20789, '3013456', 'd6a9a933c8aafc51e55ac0662b6e4d4a', 'nikmuzamer@gmal.com', 'NIK MUZAMER', 3, NULL, NULL, NULL, NULL, NULL),
-(20795, '0015-05', 'e19d5cd5af0378da05f63f891c7467af', '', 'ZURAINI ZAINOL', 2, NULL, NULL, NULL, NULL, NULL),
-(20802, 'abcd', 'e2fc714c4727ee9395f324cd2e7f331f', 'your@email.com', 'Your name', 3, 'http://localhost/img/default-avatar.png', NULL, NULL, NULL, NULL);
+(20789, '3013456', 'd6a9a933c8aafc51e55ac0662b6e4d4a', 'nikmuzamer@gmal.com', 'NIK MUZAMER', 3, 'img/default-avatar.png', NULL, NULL, NULL, NULL),
+(20795, '0015-05', 'e19d5cd5af0378da05f63f891c7467af', '', 'ZURAINI ZAINOL', 2, 'img/default-avatar.png', NULL, NULL, NULL, NULL),
+(20802, 'abcd', 'e19d5cd5af0378da05f63f891c7467af', 'admin@email.com', 'Alif Jamaluddin', 3, 'img/default-avatar.png', NULL, NULL, NULL, NULL);
