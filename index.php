@@ -4,6 +4,21 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
+if(isset($_SESSION['MM_UserGroup'])){
+  switch($_SESSION['MM_UserGroup']){
+          case 1: header("Location: " . $MM_redirectLoginSuccessAdmin );
+          break;
+          case 2: header("Location: " . $MM_redirectLoginSuccessPensyarah );
+          break;
+          case 3: header("Location: " . $MM_redirectLoginSuccessKB );
+          break;
+          case 4: header("Location: " . $MM_redirectLoginSuccessDekan );
+          break;  
+        }
+}
+
+include("check_access.php");
+
 require( "process/config.php" );
 
 $connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
@@ -40,6 +55,7 @@ $LoginRS = $connection->query($LoginRS__query);
         $loginStrGroup  = $row['f142idlevel'];
         $userName = $row['f142Name'];
         $idakaun = $row['f142idakaun'];
+        $level = $row['f142idlevel'];
 
 
         
@@ -49,6 +65,7 @@ $LoginRS = $connection->query($LoginRS__query);
         $_SESSION['MM_NoID'] = $loginID;
         $_SESSION['MM_AkaunID'] = $idakaun;
         $_SESSION['MM_UserGroup'] = $loginStrGroup;       
+        $_SESSION['MM_Level'] = $level;       
 
         switch($loginStrGroup){
           case 1: header("Location: " . $MM_redirectLoginSuccessAdmin );
@@ -114,10 +131,12 @@ $LoginRS = $connection->query($LoginRS__query);
         </div>
       </div> <!-- /row -->
 <!-- end navbar -->
+  <div class="jumbotron" id="jumbo-banner"> 
+  </div>w
 <div class="jumbotron" id="jumbo-home">
   <div class="container">
-   <h1>Hello, world!</h1>
-  <p>This is demo website for SLKPKH</p>
+   <h3>Sistem Laporan Kesalahan</h3>
+  <!-- <p>This is demo website for SLKPKH</p> -->
   <!-- <p><a class="btn btn-primary btn-lg" href="panel/admin" role="button">Administrator Panel</a></p>
   <p><a class="btn btn-primary btn-lg" href="panel/kb" role="button">Ketua Batalion Panel</a></p>
   <p><a class="btn btn-primary btn-lg" href="panel/pensyarah" role="button">Pensyarah Panel</a></p> -->

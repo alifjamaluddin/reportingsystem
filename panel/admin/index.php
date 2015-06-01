@@ -2,13 +2,11 @@
 if (!isset($_SESSION)) {
   session_start();
 }
-
 $id = $_SESSION['MM_NoID'];
 $name = $_SESSION['MM_UserName'];
 
-
+include("check_access.php");
 require( "../../process/config.php" );
-
 $connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
 // Check connection
 if (mysqli_connect_errno())

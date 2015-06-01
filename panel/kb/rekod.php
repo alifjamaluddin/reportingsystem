@@ -4,7 +4,7 @@ if (!isset($_SESSION)) {
   session_start();
 }
 
-
+include("check_access.php");
 $id = $_SESSION['MM_NoID'];
 $name = $_SESSION['MM_UserName'];
 

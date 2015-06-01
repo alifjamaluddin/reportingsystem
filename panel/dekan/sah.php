@@ -1,3 +1,41 @@
+<?php
+// *** Validate request to login to this site.
+if (!isset($_SESSION)) {
+  session_start();
+}
+include("check_access.php");
+require( "../../process/config.php" );
+
+$connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
+// Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+  
+
+// $View__query="SELECT * FROM `laporan`";
+$View__query="SELECT * FROM laporan LEFT JOIN hukuman ON laporan.hukuman=hukuman.id";
+$ViewRS = $connection->query($View__query);
+
+if(isset($_GET['action'])){
+  switch($_GET['action']){
+    case "approve": 
+        $Update__query="UPDATE `slkpkh2`.`laporan` SET `dekansah` = 'Sah' WHERE `laporan`.`id_laporan` = ".$_GET['id'];
+        $Update = $connection->query($Update__query);
+        echo "<script>alert('Laporan disahkan');window.history.back();</script>";
+    break;
+    case "cancel": 
+        $Update__query="UPDATE `slkpkh2`.`laporan` SET `dekansah` = 'Batal' WHERE `laporan`.`id_laporan` = ".$_GET['id'];
+        $Update = $connection->query($Update__query);
+        echo "<script>alert('Laporan dibatalkan');</script>";
+    break;
+  }
+}
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,10 +50,10 @@
     <link href="../../css/custom.css" rel="stylesheet">
 </head>
 <body>
-<?php include('navbar-dekan.php'); ?>
-       <div class="container">
+<?php include("check_access.php"); include('navbar-dekan.php'); ?>
+<div class="container">
     <div class="row">
-      <h3>Pengesahan Laporan</h3>
+      <h3>Pengesahan</h3>
     </div>
     <div class="row">
       <div class="panel panel-info">
@@ -32,46 +70,43 @@
             <th>#</th>
             <th>ID Laporan</th>
             <th>Tarikh</th>
-            <th>Catatan</th>
-            <th>Pengesahan</th>
+            <th>Masa</th>
+            <th>Hukuman</th>
+            <th>Tindakan</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>ALK0141</td>
-            <td>21/04/2015</td>
-            <td></td>
+         <?php 
+        $counter = 0;
+ 
 
-            <td>
-              <a href="#terima" class="btn btn-primary">Sahkan</a>
-              <a href="#batal" class="btn btn-danger">Batal</a>
-            </td>
-          </tr>
-           <tr>
-            <th scope="row">2</th>
-            <td>ALK0571</td>
-            <td>1/05/2015</td>
-             <td></td>
+         while($row = mysqli_fetch_assoc($ViewRS)){ 
+            $counter++;
 
-            <td>
-              <a href="#terima" class="btn btn-primary">Sahkan</a>
-              <a href="#batal" class="btn btn-danger">Batal</a>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>ALK0600</td>
-            <td>3/05/2015</td>
-             <td></td>
+           echo ' <tr>
+            <th scope="row">'.$counter.'</th>
+            <td><a href="viewreport.php?id='.$row["id_laporan"].'">ALK'.$row["id_laporan"].'</td>
+            <td>'.$row["tarikh"].'</td>
+            <td>'.$row["masa"].'</td>
+            <td>'.$row["nama"].'</td>';
+            if($row['dekansah']=="Dalam semakan"){
+              echo '
+              <td>
+                    <a class="btn btn-primary" href="sah.php?id='.$row["id_laporan"].'&action=approve">Sah</a>
+                    <a class="btn btn-danger" href="sah.php?id='.$row["id_laporan"].'&action=cancel">Batal</a>
+              </td>';
+            }else{
 
-            <td>
-              <a href="#terima" class="btn btn-primary">Sahkan</a>
-              <a href="#batal" class="btn btn-danger">Batal</a>
-            </td>
-          </tr>
+              echo '<td>'.$row['dekansah'].'</td>';
+            }
+            
 
+            echo '</tr>';
+          
+         }
+        ?>
 
+         
         </tbody>
       </table>
     </div>

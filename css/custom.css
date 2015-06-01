@@ -18,6 +18,16 @@
 	height: 300px;
 }
 
+#jumbo-banner{
+  color: white;
+  margin-top: -40px;
+  height: 200px;
+  margin-right: auto;
+  margin-left: auto;
+  background: url(../img/banner-upnm.jpg) no-repeat ; 
+  /*background-size: cover;*/
+}
+
 #jumbo-home{
 	color: white;
 	margin-top: -50px;

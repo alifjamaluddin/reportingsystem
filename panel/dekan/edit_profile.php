@@ -3,7 +3,7 @@
 if (!isset($_SESSION)) {
   session_start();
 }
-
+include("check_access.php");
 require( "../../process/config.php" );
 
 $connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
@@ -104,7 +104,7 @@ if (isset($_POST['update'])) {
     <link href="../../css/custom.css" rel="stylesheet">
 </head>
 <body>
-<?php include('navbar-admin.php'); ?>
+<?php include("check_access.php"); include('navbar-dekan.php'); ?>
       <div class="container">
         <div class="row">
         <h3>Kemaskini Akaun</h3>

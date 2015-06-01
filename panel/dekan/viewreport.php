@@ -3,7 +3,6 @@
 if (!isset($_SESSION)) {
   session_start();
 }
-include("check_access.php");
 require( "../../process/config.php" );
 
 $connection = mysqli_connect(DB_HOST,DB_USERNAME,DB_PASSWORD,DB_NAME);
@@ -26,8 +25,8 @@ $row = mysqli_fetch_array($ViewRS);
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Administrator</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dekan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Loading Bootstrap -->
     <link href="../../css/vendor/bootstrap.min.css" rel="stylesheet">
@@ -37,7 +36,7 @@ $row = mysqli_fetch_array($ViewRS);
     <link href="../../css/custom.css" rel="stylesheet">
 </head>
 <body>
-<?php include('navbar-ps.php'); ?>
+<?php include("check_access.php"); include('navbar-dekan.php'); ?>
   <div class="container">
     <div class="row">
       <h3>Rekod Kesalahan</h3>
@@ -45,7 +44,7 @@ $row = mysqli_fetch_array($ViewRS);
     <div class="row">
       <!-- Default panel contents -->
      
-     <?php // echo json_encode($row); ?>
+
       <p><b>Nombor Laporan:</b></p>
       <p>ALK<?php echo $row[0]; ?> </p>
       <p><b>Nombor Tentera:</b></p>
@@ -59,13 +58,15 @@ $row = mysqli_fetch_array($ViewRS);
       <p><b>Masa:</b></p>
       <p><?php echo $row[3]; ?> </p>
       <p><b>Kesalahan:</b></p>
-      <p><?php echo $row[14]; ?> </p>
+      <p><?php echo $row[13]; ?> </p>
       <p><b>Hukuman:</b></p>
-      <p><?php echo $row[12]; ?> </p>
+      <p><?php echo $row[11]; ?> </p>
       <p><b>Catatan:</b></p>
-      <p><?php echo $row[10]; ?> </p>
+      <p><?php echo $row[9]; ?> </p>
       <p><b>Status:</b></p>
       <p><?php echo $row[6]; ?> </p>
+       <p><b>Pengesahan Dekan:</b></p>
+      <p><?php echo $row[9]; ?> </p>
       
 
 
