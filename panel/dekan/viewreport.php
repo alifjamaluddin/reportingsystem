@@ -58,9 +58,9 @@ $row = mysqli_fetch_array($ViewRS);
       <p><b>Masa:</b></p>
       <p><?php echo $row[3]; ?> </p>
       <p><b>Kesalahan:</b></p>
-      <p><?php echo $row[13]; ?> </p>
+      <p><?php echo $row[14]; ?> </p>
       <p><b>Hukuman:</b></p>
-      <p><?php echo $row[11]; ?> </p>
+      <p><?php echo $row[12]; ?> </p>
       <p><b>Catatan:</b></p>
       <p><?php echo $row[9]; ?> </p>
       <p><b>Status:</b></p>

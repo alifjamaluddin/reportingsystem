@@ -34,7 +34,7 @@ $ViewRS = $connection->query($View__query);
 
 
   $Update__query="UPDATE `slkpkh2`.`laporan` 
-  SET `status` = '$status', `hukuman` = '$hukuman', `catatan` = '$catatan' 
+  SET `status` = '$status', `hukuman` = '$hukuman' 
   WHERE `laporan`.`id_laporan` = $id ";
   // echo $Update__query;
       $UpdateRS = $connection->query($Update__query);
@@ -86,7 +86,10 @@ $ViewRS = $connection->query($View__query);
             <p><?php echo $row[16]; ?></p>
             
            <label for="kesalahan">Kesalahan:</label>
-           <p><?php echo $row[13]; ?></p>
+           <p><?php echo $row[14]; ?></p>
+
+          <label for="kesalahan">Catatan:</label>
+           <p><?php echo $row[9]; ?></p>
 
             <label for="pa">Status:</label>
             <select name="status" class="form-control" >
@@ -105,9 +108,9 @@ $ViewRS = $connection->query($View__query);
                     }
             ?>
           </select>
-            <label for="catatan">Catatan:</label>
-            <input type="text" name="catatan" value="<?php echo $row[9]; ?>" placeholder="Catatan" class="form-control" />
-            
+            <!-- <label for="catatan">Catatan:</label>
+            <input type="text" name="catatan" value="<?php //echo $row[9]; ?>" placeholder="Catatan" class="form-control" />
+             -->
             <hr>
             <input type="submit" name="submit" value="Update" class="btn btn-primary">
 

@@ -26,8 +26,12 @@ if (isset($_POST['cari'])) {
     $View_query = "SELECT * FROM `pkdt` WHERE `no_matrik` LIKE '$nomatrik'";
     // echo $View_query;
     $ViewRS = $connection->query($View_query);
-    $row = mysqli_fetch_assoc($ViewRS);
-    // echo $userID;
+
+    if(!($row = mysqli_fetch_assoc($ViewRS))){
+       echo "
+    <script>alert('Pelajar tiada dalam rekod');</script>
+    ";
+     }
 }
 
 

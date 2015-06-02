@@ -14,7 +14,9 @@ if (mysqli_connect_errno())
   }
   
 $userID = $_SESSION['MM_NoID'];
-$View__query="SELECT * FROM `laporan` WHERE pelapor='$userID'";
+$View__query="SELECT * FROM laporan l LEFT JOIN hukuman h ON l.hukuman=h.id LEFT JOIN kesalahan k ON l.kesalahan=k.id LEFT JOIN pkdt p ON l.kadet=p.no_tentera  WHERE pelapor='".$userID."'";
+
+// $View__query="SELECT * FROM `laporan` WHERE pelapor='$userID'";
 // echo $View__query;
 $ViewRS = $connection->query($View__query);
 
@@ -68,7 +70,7 @@ $ViewRS = $connection->query($View__query);
             <th>ID Laporan</th>
             <th>Tarikh</th>
             <th>Masa</th>
-            <th>Pngesahan Dekan</th>
+            <th>Pengesahan Dekan</th>
             <th>Hukuman</th>
             <th>Status</th>
             <!-- <th>Catatan</th> -->
@@ -78,26 +80,16 @@ $ViewRS = $connection->query($View__query);
         <tbody>
          <?php 
         $counter = 0;
- 
 
-         while($row = mysqli_fetch_assoc($ViewRS)){ 
+         while($row = mysqli_fetch_array($ViewRS)){ 
             $counter++;
-         
-            if($row["dekansah"]==0){
-
-              $sah = "Tidak";
-            }
-            else{
-              $sah = "Ya";
-            }
-
            echo ' <tr>
             <th scope="row">1</th>
             <td><a href="viewreport.php?id='.$row["id_laporan"].'">ALK'.$row["id_laporan"].'</td>
             <td>'.$row["tarikh"].'</td>
             <td>'.$row["masa"].'</td>
-            <td>'.$sah.'</td>
-            <td>'.$row["hukuman"].'</td>
+            <td>'.$row["dekansah"].'</td>
+            <td>'.$row[12].'</td>
             <td>'.$row["status"].'</td>
 
           </tr>';
