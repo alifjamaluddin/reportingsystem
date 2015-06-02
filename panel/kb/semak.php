@@ -84,16 +84,15 @@ $ViewRS = $connection->query($View__query);
           //   <td>'.$row["status"].'</td>
           //   <td>'.$row["nama"].'</td>
           // </tr>';
-          
           echo '<tr>
             <th scope="row">'.$counter.'</th>
              <td><a href="viewreport.php?id='.$row[0].'">ALK'.$row[0].'</td>
             <th>'.$row[1].'</th>
-            <th>'.$row[16].'</th>
-            <th>'.$row[13].'</th>
+            <th>'.$row['nama'].'</th>
+            <th>'.$row[14].'</th>
             <th>'.$row[6].'</th>
-            <th>'.$row[11].'</th>
-            <th>'.$row[9].'</th>
+            <th>'.$row[12].'</th>
+            <th>'.$row[10].'</th>
             <th>
               <a href="semak_edit.php?id='.$row[0].'" class="btn btn-primary">Kemaskini</a>
             </th>
