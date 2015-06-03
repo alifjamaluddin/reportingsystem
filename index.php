@@ -1,4 +1,5 @@
 <?php
+error_reporting(-1);
 // *** Validate request to login to this site.
 if (!isset($_SESSION)) {
   session_start();
@@ -10,9 +11,9 @@ if (!isset($_SESSION)) {
   $MM_redirectLoginSuccessDekan = "panel/dekan";
 
   $MM_redirectLoginFailed = "#LOGINFAILED";//TODO
-
-if(empty($_SESSION['MM_UserGroup'])){
-  switch($_SESSION['MM_UserGroup']){
+  
+if(isset($_SESSION['MM_UserGroup']) && !empty($_SESSION['MM_UserGroup'])) {
+    switch($_SESSION['MM_UserGroup']){
           case 1: header("Location: " . $MM_redirectLoginSuccessAdmin );
           break;
           case 2: header("Location: " . $MM_redirectLoginSuccessPensyarah );
@@ -23,6 +24,7 @@ if(empty($_SESSION['MM_UserGroup'])){
           break;  
         }
 }
+
 
 
 require( "process/config.php" );
