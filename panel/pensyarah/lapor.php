@@ -14,7 +14,7 @@ if (mysqli_connect_errno())
   }
   
   $successMessage = "<script>alert('Laporan Berjaya');</script>";
-  $failedMessage = "<script>alert('Laporan Gagal');</script>";
+  $failedMessage = "<script>alert('Laporan Gagal');window.history.back();</script>";
   $fillFormMessage = "<script>alert('Please fill all the required fields');</script>";
 
   
@@ -44,13 +44,15 @@ $masa = $_POST['masa'];
 $kesalahan = $_POST['kesalahan'];
 $keterangan = $_POST['keterangan'];
 
-  if($nomatrik == "" || $notentera == "" || $kos == ""){
+  if($nomatrik == "" || $notentera == "" || $kos == "" || $tarikh == "" || $masa == ""|| $kesalahan == ""){
     echo $fillFormMessage;
+  }else{
+    $Daftar__query="INSERT INTO `slkpkh2`.`laporan` (`id_laporan`, `kadet`, `tarikh`, `masa`, `pelapor`, `matapelajaran`, `status`, `kesalahan`, `hukuman`, `catatan`) 
+    VALUES ('', '$notentera', '$tarikh', '$masa', '$userID', '$kos ', '$status', '$kesalahan', '$hukuman', '$keterangan');";
+    $DaftarRS = $connection->query($Daftar__query);
   }
   
-$Daftar__query="INSERT INTO `slkpkh2`.`laporan` (`id_laporan`, `kadet`, `tarikh`, `masa`, `pelapor`, `matapelajaran`, `status`, `kesalahan`, `hukuman`, `catatan`) 
-VALUES ('', '$notentera', '$tarikh', '$masa', '$userID', '$kos ', '$status', '$kesalahan', '$hukuman', '$keterangan');";
-$DaftarRS = $connection->query($Daftar__query);
+
 // echo $Daftar__query;
 
 if($DaftarRS){

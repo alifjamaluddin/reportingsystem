@@ -44,7 +44,7 @@ $row = mysqli_fetch_array($ViewRS);
     <div class="row">
       <!-- Default panel contents -->
      
-
+   
       <p><b>Nombor Laporan:</b></p>
       <p>ALK<?php echo $row[0]; ?> </p>
       <p><b>Nombor Tentera:</b></p>
@@ -62,7 +62,7 @@ $row = mysqli_fetch_array($ViewRS);
       <p><b>Hukuman:</b></p>
       <p><?php echo $row[12]; ?> </p>
       <p><b>Catatan:</b></p>
-      <p><?php echo $row[9]; ?> </p>
+      <p><?php echo $row["catatan"]; ?> </p>
       <p><b>Status:</b></p>
       <p><?php echo $row[6]; ?> </p>
        <p><b>Pengesahan Dekan:</b></p>

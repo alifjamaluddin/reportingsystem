@@ -36,18 +36,21 @@ if (isset($_POST['submit'])) {
 
         if($noid == "" || $password == "" || $cpassword == ""){
           echo $fillFormMessage;
-        }
-        if($password == $cpassword){
+        }else{
+          if($password == $cpassword){
           $md5Password=md5($password);
+          $Update__query="UPDATE `slkpkh2`.`t142_akaun` 
+          SET `f142noID` = '$noid', `f142password` = '$md5Password'
+          WHERE `t142_akaun`.`f142idakaun` = $idakaun";
+
+          $UpdateRS = $connection->query($Update__query);
         }else{
           echo $passwordNotMatchMessage;
         }
+        }
+        
 
-      $Update__query="UPDATE `slkpkh2`.`t142_akaun` 
-      SET `f142noID` = '$noid', `f142password` = '$md5Password'
-      WHERE `t142_akaun`.`f142idakaun` = $idakaun";
-
-      $UpdateRS = $connection->query($Update__query);
+      
 
       if($UpdateRS){
         echo $successMessage;
@@ -87,6 +90,7 @@ if (isset($_POST['update'])) {
 }
 
 ?>
+
 
 
 

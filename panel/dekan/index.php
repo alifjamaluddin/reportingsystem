@@ -59,7 +59,6 @@ $row = mysqli_fetch_array($ViewRS);
             <div class="panel-body">
               <div class="row">
                 <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="../../<?php echo $row['f142photo'] ?>" class="img-circle" height="120px" width="120px"> </div>
-                
                 <div class=" col-md-9 col-lg-9 "> 
                   <table class="table table-user-information">
                     <tbody>
