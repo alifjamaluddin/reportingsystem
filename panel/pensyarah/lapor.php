@@ -14,7 +14,7 @@ if (mysqli_connect_errno())
   }
   
   $successMessage = "<script>alert('Laporan Berjaya');</script>";
-  $failedMessage = "<script>alert('Laporan Gagal');window.history.back();</script>";
+  $failedMessage = "<script>alert('Laporan Gagal');window.location = './lapor.php';;</script>";
   $fillFormMessage = "<script>alert('Please fill all the required fields');</script>";
 
   
