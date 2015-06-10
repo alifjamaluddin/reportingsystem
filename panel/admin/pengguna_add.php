@@ -29,20 +29,24 @@ if (isset($_POST['submit'])) {
   if($noid == "" || $password == "" || $cpassword == ""){
     echo $fillFormMessage;
   }
-  if($password == $cpassword){
+  else{
+    if($password == $cpassword){
     $md5Password=md5($password);
+    $avatarURL = AVATAR_PIC;
+    $Daftar__query="INSERT INTO `slkpkh2`.`t142_akaun` (`f142idakaun`, `f142noID`, `f142password`, `f142email`, `f142Name`, `f142idlevel`, `f142photo`, `f142ipadd`, `f142thupdate`, `f142updateby`, `f142catatan`) VALUES (NULL, '$noid', '$md5Password', 'your@email.com', 'Your name', '$level', '$avatarURL', NULL, NULL, NULL, NULL);";
+    $DaftarRS = $connection->query($Daftar__query);
+      if($DaftarRS){
+       echo $successMessage;
+      }else{
+       echo $failedMessage;
+      }
   }else{
     echo $passwordNotMatchMessage;
   }
-$avatarURL = AVATAR_PIC;
-$Daftar__query="INSERT INTO `slkpkh2`.`t142_akaun` (`f142idakaun`, `f142noID`, `f142password`, `f142email`, `f142Name`, `f142idlevel`, `f142photo`, `f142ipadd`, `f142thupdate`, `f142updateby`, `f142catatan`) VALUES (NULL, '$noid', '$md5Password', 'your@email.com', 'Your name', '$level', '$avatarURL', NULL, NULL, NULL, NULL);";
-$DaftarRS = $connection->query($Daftar__query);
-
-if($DaftarRS){
-  echo $successMessage;
-}else{
-  echo $failedMessage;
 }
+
+
+
 
 }
 

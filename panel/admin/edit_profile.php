@@ -44,15 +44,7 @@ if (isset($_POST['submit'])) {
           WHERE `t142_akaun`.`f142idakaun` = $idakaun";
 
           $UpdateRS = $connection->query($Update__query);
-        }else{
-          echo $passwordNotMatchMessage;
-        }
-        }
-        
-
-      
-
-      if($UpdateRS){
+          if($UpdateRS){
         echo $successMessage;
 
         header('Location: '."./edit_profile.php");
@@ -60,6 +52,10 @@ if (isset($_POST['submit'])) {
         echo $failedMessage;
       }
 
+        }else{
+          echo $passwordNotMatchMessage;
+        }
+        }
 }
 
 if (isset($_POST['update'])) {
@@ -70,23 +66,20 @@ if (isset($_POST['update'])) {
 
         if($name == "" || $email == ""){
           echo $fillFormMessage;
+        }else{
+          $Update__query="UPDATE `slkpkh2`.`t142_akaun` 
+         SET `f142Name` = '$name', `f142email` = '$email'
+        WHERE `t142_akaun`.`f142idakaun` = $idakaun";
+
+        $UpdateRS = $connection->query($Update__query);
+
+        if($UpdateRS){
+          echo $successMessage;
+          header('Location: '."./edit_profile.php");
+        }else{
+          echo $failedMessage;
         }
-        
-
-      $Update__query="UPDATE `slkpkh2`.`t142_akaun` 
-      SET `f142Name` = '$name', `f142email` = '$email'
-      WHERE `t142_akaun`.`f142idakaun` = $idakaun";
-
-      $UpdateRS = $connection->query($Update__query);
-
-      if($UpdateRS){
-        echo $successMessage;
-
-        header('Location: '."./edit_profile.php");
-      }else{
-        echo $failedMessage;
       }
-
 }
 
 ?>

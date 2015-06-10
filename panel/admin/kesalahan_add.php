@@ -25,7 +25,6 @@ if (isset($_POST['submit'])) {
     echo $fillFormMessage;
   }else{
       $Daftar__query="INSERT INTO `slkpkh2`.`kesalahan` (`id`, `nama`) VALUES (NULL, '$nama')";
-// echo $Daftar__query;
       $DaftarRS = $connection->query($Daftar__query);
 
       if($DaftarRS){

@@ -23,9 +23,8 @@ if (isset($_POST['submit'])) {
 
   if($nama == ""){
     echo $fillFormMessage;
-  }
-
-  $Daftar__query="INSERT INTO `slkpkh2`.`hukuman` (`id`, `nama`) VALUES (NULL, '$nama')";
+  }else{
+    $Daftar__query="INSERT INTO `slkpkh2`.`hukuman` (`id`, `nama`) VALUES (NULL, '$nama')";
 // echo $Daftar__query;
       $DaftarRS = $connection->query($Daftar__query);
 
@@ -35,6 +34,9 @@ if (isset($_POST['submit'])) {
       }else{
         echo $failedMessage;
       }
+  }
+
+  
  
 
 }

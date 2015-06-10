@@ -30,18 +30,19 @@ if (isset($_POST['submit'])) {
 
   if($noid == "" || $nama == "" || $nomatrik == "" || $pengambilan == "" || $pa == ""){
     echo $fillFormMessage;
+  }else{
+    $Daftar__query="INSERT INTO `slkpkh2`.`pkdt` (`no_matrik`, `nama`, `no_tentera`, `pengambilan`, `batalion`, `fakulti`, `penyelia_akademik`) VALUES ('$nomatrik', '$nama', '$noid', '$pengambilan', '$batalion', '$fakulti', '$pa');";
+    $DaftarRS = $connection->query($Daftar__query);
+    if($DaftarRS){
+      echo $successMessage;
+    }else{
+      echo $failedMessage;
+    }
   }
  
-$Daftar__query="INSERT INTO `slkpkh2`.`pkdt` (`no_matrik`, `nama`, `no_tentera`, `pengambilan`, `batalion`, `fakulti`, `penyelia_akademik`) VALUES ('$nomatrik', '$nama', '$noid', '$pengambilan', '$batalion', '$fakulti', '$pa');";
-// echo $Daftar__query;
-$DaftarRS = $connection->query($Daftar__query);
 
-if($DaftarRS){
-  echo $successMessage;
 
-}else{
-  echo $failedMessage;
-}
+
 
 }
 
