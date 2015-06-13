@@ -17,7 +17,7 @@ if (mysqli_connect_errno())
   
 
 // $View__query="SELECT * FROM `laporan`";
-$View__query="SELECT * FROM laporan l LEFT JOIN hukuman h ON l.hukuman=h.id LEFT JOIN kesalahan k ON l.kesalahan=k.id LEFT JOIN pkdt p ON l.kadet=p.no_tentera  WHERE status <> 'Dilaksanakan'";
+$View__query="SELECT * FROM laporan l LEFT JOIN hukuman h ON l.hukuman=h.id LEFT JOIN kesalahan k ON l.kesalahan=k.id LEFT JOIN pkdt p ON l.kadet=p.no_tentera  WHERE status <> 'Dilaksanakan' AND dekansah = 'Sah'";
 $ViewRS = $connection->query($View__query);
 // $row = mysqli_fetch_array($ViewRS);
 
